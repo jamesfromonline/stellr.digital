@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react"
+import { withRouter } from "react-router-dom"
 import { useStateValue } from "../state"
 
-const Search = () => {
+const Search = props => {
   const [{ user }, dispatch] = useStateValue()
   const [error, setError] = useState(false)
   const igSearch = useRef(null)
@@ -15,7 +16,12 @@ const Search = () => {
         type: "user",
         payload: json
       })
+      dispatch({
+        type: "animation",
+        payload: "moveLeft"
+      })
       console.log(json)
+      props.history.push(username)
     } catch (e) {
       setError(true)
       console.error(`User ${username} not found.`)
@@ -37,4 +43,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default withRouter(Search)

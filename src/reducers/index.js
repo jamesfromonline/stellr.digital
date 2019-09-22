@@ -8,7 +8,7 @@ export const rootReducer = (state, action) => {
     case "animation":
       return {
         ...state,
-        animation: action.payload
+        animations: action.payload
       }
     default:
       return state

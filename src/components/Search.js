@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom"
 import { useStateValue } from "../state"
 
 const Search = props => {
-  const [{ user }, dispatch] = useStateValue()
+  const [{ animations }, dispatch] = useStateValue()
   const [error, setError] = useState(false)
   const igSearch = useRef(null)
 
@@ -16,9 +16,14 @@ const Search = props => {
         type: "user",
         payload: json
       })
+
       dispatch({
         type: "animation",
-        payload: "moveLeft"
+        payload: {
+          ...animations,
+          background: "moveLeft",
+          user: "animate__in--left"
+        }
       })
       console.log(json)
       props.history.push(username)

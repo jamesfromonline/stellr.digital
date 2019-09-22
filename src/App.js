@@ -7,13 +7,13 @@ import User from "./components/User"
 import "./App.scss"
 
 function App() {
-  const [{ animation }] = useStateValue()
+  const [{ animations }] = useStateValue()
   return (
     <Div100vh>
       <main className="app">
-        <div className={`stars ${animation}`} />
-        <div className={`twinkling ${animation}`} />
-        <div className={`cover ${animation}`} />
+        <div className={`stars ${animations.background}`} />
+        <div className={`twinkle ${animations.background}`} />
+        <div className={`cover ${animations.background}`} />
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />

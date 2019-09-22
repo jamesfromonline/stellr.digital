@@ -1,0 +1,46 @@
+@keyframes twinkle {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+  }
+
+  .stars,
+  .twinkle {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:150%;
+    height:100%;
+    display:block;
+    transition: all .5s ease;
+  }
+
+  .moveLeft {
+    left: -50%;
+  }
+
+  .moveRight {
+    left: 0;
+  }
+
+  .stars {
+    background: #000 url('/stars.png') repeat top center;
+    z-index:0;
+  }
+
+  .twinkle {
+    background:transparent url('/twinkling.png') repeat top center;
+    z-index:1;
+    animation: twinkle 500s linear infinite;
+  }
+
+  .cover {
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    background: #333;
+    opacity: .5;
+    z-index: 2;
+    transition: all .5s ease;
+  }

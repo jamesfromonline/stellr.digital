@@ -1,0 +1,38 @@
+.user {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+
+    &__top-bar {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    &__main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &__card {
+      display: flex;
+      justify-content: center;
+      width: 400px;
+      height: 70%;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &__card-content {
+      width: 100%;
+      height: 100%;
+    }
+  }

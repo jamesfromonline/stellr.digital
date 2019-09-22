@@ -46,9 +46,9 @@ const Search = props => {
   return (
     <div className="search">
       <form onSubmit={handleSearch}>
-        <input ref={igSearch} placeholder="Username" />
+        <input ref={igSearch} placeholder="username" />
       </form>
-      <button onClick={handleSearch}>Go</button>
+      <button onClick={handleSearch}>go</button>
       {error && <p>User not found. Try somebody else.</p>}
     </div>
   )

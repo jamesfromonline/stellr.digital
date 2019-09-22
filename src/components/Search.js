@@ -36,12 +36,18 @@ const Search = props => {
   const handleSearch = e => {
     e.preventDefault()
     setError(false)
-    fetchInstagramUser(igSearch.current.value)
+    if (igSearch.current.value > 0) {
+      fetchInstagramUser(igSearch.current.value)
+    } else {
+      setError(true)
+    }
   }
 
   return (
     <div className="search">
-      <input ref={igSearch} onSubmit={handleSearch} placeholder="Search" />
+      <form onSubmit={handleSearch}>
+        <input ref={igSearch} placeholder="Username" />
+      </form>
       <button onClick={handleSearch}>Go</button>
       {error && <p>User not found. Try somebody else.</p>}
     </div>

@@ -3,6 +3,7 @@ import Div100vh from "react-div-100vh"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { useStateValue } from "./state"
 import Home from "./components/Home"
+import Background from "./components/Background"
 import User from "./components/User"
 import "./App.scss"
 
@@ -11,9 +12,7 @@ function App() {
   return (
     <Div100vh>
       <main className="app">
-        <div className={`stars ${animations.background}`} />
-        <div className={`twinkle ${animations.background}`} />
-        <div className={`cover ${animations.background}`} />
+        <Background />
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />

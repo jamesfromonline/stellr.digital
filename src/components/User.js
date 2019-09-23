@@ -11,7 +11,12 @@ const User = props => {
       payload: {
         ...animations,
         user: "animate__out--right",
-        background: "moveRight"
+        search: "animate__in--right",
+        background: {
+          clouds: "animate__clouds--right",
+          nebula: "animate__nebula--right",
+          landscape: "animate__landscape--right"
+        }
       }
     })
     setTimeout(() => {

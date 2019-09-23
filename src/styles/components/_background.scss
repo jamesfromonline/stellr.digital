@@ -84,17 +84,17 @@ $cloudgroup-tilt: -19deg;
 
 	@keyframes space-nebula-scroll-small {
 		from {background-position: 0% 0%;}
-		to {background-position: -1200px 0%;}
+		to {background-position: 1200px 0%;}
 	}
 
 	@keyframes space-nebula-scroll-med {
 		from {background-position: 0% 0%;}
-		to {background-position: -1600px 0%;}
+		to {background-position: 1600px 0%;}
 	}
 
 	@keyframes space-nebula-scroll-large {
 		from {background-position: 0% 0%;}
-		to {background-position: -2400px 0%;}
+		to {background-position: 2400px 0%;}
 	}
 
 	.space-nebula {
@@ -112,13 +112,13 @@ $cloudgroup-tilt: -19deg;
 			height: 600px;
 			top: 20%;
 			opacity: 0.65;
-			animation: space-nebula-scroll-small 40s linear infinite;
+			animation: space-nebula-scroll-small 80s linear infinite;
 		}
 
 		.space-nebula-02 {
 			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/bg_nebula_02.svg");
 			opacity: 0.8;
-			animation: space-nebula-scroll-med 60s linear infinite;
+			animation: space-nebula-scroll-med 120s linear infinite;
 		}
 
 		.space-nebula-03 {
@@ -128,7 +128,7 @@ $cloudgroup-tilt: -19deg;
 			opacity: 0.5;
 			top: -4%;
 			background-position: 0% 0%;
-			animation: space-nebula-scroll-large 45s linear infinite;
+			animation: space-nebula-scroll-large 90s linear infinite;
 		}
 
 
@@ -161,17 +161,17 @@ $cloudgroup-tilt: -19deg;
 
 	.beacon-wrapper-01 {
 		transform: translate(-20%, 55%);
-		animation: beacon-flight-01 12s linear infinite;
+		animation: beacon-flight-01 24s linear infinite;
 	}
 
 	.beacon-wrapper-02 {
 		transform: translate(-20%, 55%);
-		animation: beacon-flight-02 12s 4s linear infinite;
+		animation: beacon-flight-02 24s 8s linear infinite;
 	}
 
 	.beacon-wrapper-03 {
 		transform: translate(-20%, 55%);
-		animation: beacon-flight-03 12s 8s linear infinite;
+		animation: beacon-flight-03 24s 16s linear infinite;
 	}
 
 	@keyframes beacon-flash {
@@ -193,7 +193,7 @@ $cloudgroup-tilt: -19deg;
 			rgba(44,130,235,0.25) 30%,
 			rgba(44,130,235,0) 65%);
 		opacity: 1;
-		animation: beacon-flash 0.8s linear infinite;
+		animation: beacon-flash 1.6s linear infinite;
 	}
 
 // LANDSCAPE ======
@@ -206,7 +206,7 @@ $cloudgroup-tilt: -19deg;
 
 	@keyframes landscape__bg-scroller {
 		from {background-position: 0px bottom}
-		to {background-position: 2400px bottom}
+		to {background-position: -2400px bottom}
 	}
 
 	.landscape__bg {
@@ -221,15 +221,15 @@ $cloudgroup-tilt: -19deg;
 
 		.landscape__bg--01 {
 			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/landscape_fg_01.svg");
-			animation: landscape__bg-scroller 40s linear infinite;
+			animation: landscape__bg-scroller 80s linear infinite;
 		}
 		.landscape__bg--02 {
 			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/landscape_fg_02.svg");
-			animation: landscape__bg-scroller 60s linear infinite;
+			animation: landscape__bg-scroller 120s linear infinite;
 		}
 		.landscape__bg--03 {
 			background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/landscape_fg_03.svg");
-			animation: landscape__bg-scroller 100s linear infinite;
+			animation: landscape__bg-scroller 200s linear infinite;
 		}
 
 .landscape-clouds__wrapper {
@@ -249,17 +249,18 @@ $cloudgroup-tilt: -19deg;
 		bottom: -2%;
 		background-size: 800px 400px;
 		background-position: 0% 0%;
+		transform: scaleX(-1)
 	}
 
 	.landscape-clouds-01 {
 		background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/landscape_clouds_01.svg");
-		animation: landscape-clouds-scroller 80s linear infinite;
+		animation: landscape-clouds-scroller 160s linear infinite;
 	}
 
 	.landscape-clouds-02 {
 		background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/350480/landscape_clouds_02.svg");
 		opacity: 0.5;
-		animation: landscape-clouds-scroller 26s linear infinite;
+		animation: landscape-clouds-scroller 52s linear infinite;
 	}
 
 

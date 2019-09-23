@@ -6,7 +6,7 @@ const Background = () => {
 
   return (
     <div className="background-wrapper">
-      <div className="wrapper__absolute--full beacon-wrapper beacon-wrapper-01">
+      {/* <div className="wrapper__absolute--full beacon-wrapper beacon-wrapper-01">
         <div className="beacon beacon-01" />
       </div>
       <div className="wrapper__absolute--full beacon-wrapper beacon-wrapper-02">
@@ -14,7 +14,7 @@ const Background = () => {
       </div>
       <div className="wrapper__absolute--full beacon-wrapper beacon-wrapper-03">
         <div className="beacon beacon-03" />
-      </div>
+      </div> */}
       <div className="space-nebula__wrapper wrapper__absolute--full">
         <div className="space-nebula space-nebula-01" />
         <div className="space-nebula space-nebula-02" />

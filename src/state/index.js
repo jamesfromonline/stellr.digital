@@ -5,7 +5,11 @@ export const StateContext = createContext()
 export const initialState = {
   user: {},
   animations: {
-    background: null,
+    background: {
+      landscape: null,
+      clouds: null,
+      nebula: null
+    },
     home: null,
     user: null
   }

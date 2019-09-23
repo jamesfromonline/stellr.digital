@@ -21,12 +21,19 @@ const Search = props => {
         type: "animation",
         payload: {
           ...animations,
-          background: "moveLeft",
+          background: {
+            clouds: "animate__clouds--left",
+            nebula: "animate__nebula--left",
+            landscape: "animate__landscape--left"
+          },
+          search: "animate__out--left",
           user: "animate__in--left"
         }
       })
       console.log(json)
-      props.history.push(username)
+      setTimeout(() => {
+        props.history.push(username)
+      }, 500)
     } catch (e) {
       setError(true)
       console.error(`User ${username} not found.`)
@@ -35,8 +42,10 @@ const Search = props => {
 
   const handleSearch = e => {
     e.preventDefault()
+    console.log(igSearch.current.classList)
+    igSearch.current.classList.remove("test")
     setError(false)
-    if (igSearch.current.value > 0) {
+    if (igSearch.current.value.length > 0) {
       fetchInstagramUser(igSearch.current.value)
     } else {
       setError(true)
@@ -44,7 +53,7 @@ const Search = props => {
   }
 
   return (
-    <div className="search">
+    <div className={`search ${animations.search}`}>
       <form onSubmit={handleSearch}>
         <input ref={igSearch} placeholder="username" />
       </form>

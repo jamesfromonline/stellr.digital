@@ -6,9 +6,20 @@ export const initialState = {
   user: {},
   animations: {
     background: {
-      landscape: null,
-      clouds: null,
-      nebula: null
+      nebula: {
+        one: "",
+        two: "",
+        three: ""
+      },
+      landscape: {
+        one: "",
+        two: "",
+        three: ""
+      },
+      clouds: {
+        one: "",
+        two: ""
+      }
     },
     home: null,
     user: null

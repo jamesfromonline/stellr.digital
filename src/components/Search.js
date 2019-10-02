@@ -22,15 +22,25 @@ const Search = props => {
         payload: {
           ...animations,
           background: {
-            clouds: "animate__clouds--left",
-            nebula: "animate__nebula--left",
-            landscape: "animate__landscape--left"
+            nebula: {
+              one: "animate__nebula-1--left",
+              two: "animate__nebula-2--left",
+              three: "animate__nebula-3--left"
+            },
+            landscape: {
+              one: "animate__landscape-1--left",
+              two: "animate__landscape-2--left",
+              three: "animate__landscape-3--left"
+            },
+            clouds: {
+              one: "animate__clouds-1--left",
+              two: "animate__clouds-2--left"
+            }
           },
           search: "animate__out--left",
           user: "animate__in--left"
         }
       })
-      console.log(json)
       setTimeout(() => {
         props.history.push(username)
       }, 500)

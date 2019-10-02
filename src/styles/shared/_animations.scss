@@ -21,6 +21,115 @@
         animation: out-right .5s ease-out;
       }
     }
+
+
+    &__nebula {
+
+      &-1 {
+        &--left {
+          animation: space-nebula-scroll-small 1s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: space-nebula-scroll-small-reverse 1s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      &-2 {
+        &--left {
+          animation: space-nebula-scroll-med 1.5s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: space-nebula-scroll-med-reverse 1.5s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      &-3 {
+        &--left {
+          animation: space-nebula-scroll-large-reverse 2s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: space-nebula-scroll-large-reverse 2s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+
+    &__landscape {
+
+      &-1 {
+        &--left {
+          animation: landscape__bg-scroller 1s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: landscape__bg-scroller-reverse 1s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      &-2 {
+        &--left {
+          animation: landscape__bg-scroller 1.2s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: landscape__bg-scroller-reverse 1.2s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      &-3 {
+        &--left {
+          animation: landscape__bg-scroller 1.3s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: landscape__bg-scroller-reverse 1.3s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+
+    &__clouds {
+
+      &-1 {
+
+        &--left {
+          animation: landscape-clouds-scroller 1.5s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: landscape-clouds-scroller-reverse 1.5s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+
+      &-2 {
+
+        &--left {
+          animation: landscape-clouds-scroller 1s ease;
+          animation-fill-mode: forwards;
+        }
+
+        &--right {
+          animation: landscape-clouds-scroller-reverse 1s ease;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+
   }
 
   @keyframes in-left {
@@ -69,4 +178,61 @@
       opacity: 0;
       transform: translateX(50%);
     }
+  }
+
+
+  // Background
+  @keyframes space-nebula-scroll-small {
+		from {background-position: 0% 0%;}
+		to {background-position: 400px 0%;}
+	}
+
+	@keyframes space-nebula-scroll-med {
+		from {background-position: 0% 0%;}
+		to {background-position: 500px 0%;}
+	}
+
+	@keyframes space-nebula-scroll-large {
+		from {background-position: 0% 0%;}
+		to {background-position: 800px 0%;}
+  }
+
+
+
+  @keyframes space-nebula-scroll-small-reverse {
+		from {background-position: 200px 0}
+		to {background-position: 0 0;}
+	}
+
+	@keyframes space-nebula-scroll-med-reverse {
+		from {background-position: 250px 0%;}
+		to {background-position: 0 0%;}
+	}
+
+	@keyframes space-nebula-scroll-large-reverse {
+		from {background-position: 400px 0%;}
+		to {background-position: 0 0%;}
+  }
+
+
+
+  @keyframes landscape__bg-scroller {
+		from {background-position: 0px bottom}
+		to {background-position: -200px bottom}
+  }
+
+  @keyframes landscape-clouds-scroller {
+    from {background-position: 0px 0%;}
+    to {background-position: -200px 0%;}
+  }
+
+
+  @keyframes landscape__bg-scroller-reverse {
+		from {background-position: -200px bottom}
+		to {background-position: 0 bottom}
+  }
+
+  @keyframes landscape-clouds-scroller-reverse {
+    from {background-position: -200px 0%;}
+    to {background-position: 0 0%;}
   }

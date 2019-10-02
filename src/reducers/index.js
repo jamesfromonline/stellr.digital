@@ -10,6 +10,11 @@ export const rootReducer = (state, action) => {
         ...state,
         animations: action.payload
       }
+    case "loading":
+      return {
+        ...state,
+        isLoading: action.payload
+      }
     default:
       return state
   }

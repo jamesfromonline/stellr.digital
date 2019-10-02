@@ -4,6 +4,7 @@ export const StateContext = createContext()
 
 export const initialState = {
   user: {},
+  isLoading: false,
   animations: {
     background: {
       nebula: {

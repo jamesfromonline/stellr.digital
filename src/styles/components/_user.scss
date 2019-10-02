@@ -27,14 +27,19 @@
       position: relative;
       display: flex;
       justify-content: center;
-      width: 500px;
+      width: 70vw;
       height: 70%;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 7px;
       background-color: rgba(255, 255, 255, 0.7 );
     }
 
     &__card-content {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
       position: absolute;
       top: 0;
       width: 100%;
@@ -43,7 +48,7 @@
     }
 
     &__avatar-container {
-      position: relative;
+      position: absolute;
       top: -50px;
       background-color: rgba(255, 255, 255, 0.7);
       padding: 10px;
@@ -51,6 +56,7 @@
       overflow: hidden;
       width: 100px;
       height: 100px;
+      min-height: 100px;
     }
 
     &__avatar {
@@ -60,5 +66,50 @@
       background-size: contain;
       background-position: center;
       border-radius: 50%;
+    }
+
+    &__username {
+      width: 100%;
+      margin: 0;
+      margin-top: 70px;
+      text-align:center;
+    }
+
+    &__stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 10px;
+        border-right: 2px solid #fff;
+
+        &:last-child {
+          border: none;
+        }
+
+        p {
+          margin: 0;
+
+          &:last-child {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    &__engagement-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex: 1;
     }
   }

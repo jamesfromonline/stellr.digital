@@ -86,6 +86,38 @@ const User = props => {
                   style={{ backgroundImage: `url(${data.profile_picture})` }}
                 />
               </div>
+              <p className="user__username">{data.username}</p>
+
+              <ul className="user__stats">
+                <li>
+                  <p>Posts</p>
+                  <p>{data.posts.length}</p>
+                </li>
+                <li>
+                  <p>Followers</p>
+                  <p>{data.followed_by}</p>
+                </li>
+                <li>
+                  <p>Following</p>
+                  <p>{data.following}</p>
+                </li>
+              </ul>
+
+              <div className="user__engagement-wrapper">
+                <p>Engagement Rate</p>
+                <p>{data.totalEngagementRate}%</p>
+              </div>
+
+              <ul className="user__stats">
+                <li>
+                  <p>Average Likes</p>
+                  <p>{data.likes_avg}</p>
+                </li>
+                <li>
+                  <p>Average Comments</p>
+                  <p>{data.comments_avg}</p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

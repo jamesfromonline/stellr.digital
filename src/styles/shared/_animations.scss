@@ -4,10 +4,12 @@
 
       &--left {
         animation: in-left .5s ease-out;
+        animation-fill-mode: forwards;
       }
 
       &--right {
         animation: in-right .5s ease-out;
+        animation-fill-mode: forwards;
       }
     }
 
@@ -15,10 +17,12 @@
 
       &--left {
         animation: out-left .5s ease-out;
+        animation-fill-mode: forwards;
       }
 
       &--right {
         animation: out-right .5s ease-out;
+        animation-fill-mode: forwards;
       }
     }
 

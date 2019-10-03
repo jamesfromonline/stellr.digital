@@ -73,18 +73,15 @@ const Search = props => {
     }
   }
 
-  useEffect(() => {
-    console.log(isLoading)
-  }, [isLoading])
-
   return (
-    <div className={`search ${animations.search}`}>
+    <section className={`search ${animations.search}`}>
+      <h1 className="logo">stellr</h1>
       <form onSubmit={handleSearch}>
         <input ref={igSearch} placeholder="username" />
       </form>
-      <button onClick={handleSearch}>{isLoading ? "LOADING!" : "GO!"}</button>
+      <button onClick={handleSearch}>{isLoading ? "LOADING!" : "GO"}</button>
       {error && <p>User not found. Try somebody else.</p>}
-    </div>
+    </section>
   )
 }
 

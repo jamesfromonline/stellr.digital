@@ -1,14 +1,16 @@
+$animationLength: 1.2s;
+
 .animate {
 
     &__in {
 
       &--left {
-        animation: in-left .5s ease-out;
+        animation: in-left .6s linear;
         animation-fill-mode: forwards;
       }
 
       &--right {
-        animation: in-right .5s ease-out;
+        animation: in-right .6s linear;
         animation-fill-mode: forwards;
       }
     }
@@ -16,12 +18,12 @@
     &__out {
 
       &--left {
-        animation: out-left .5s ease-out;
+        animation: out-left .6s linear;
         animation-fill-mode: forwards;
       }
 
       &--right {
-        animation: out-right .5s ease-out;
+        animation: out-right .6s linear;
         animation-fill-mode: forwards;
       }
     }
@@ -31,36 +33,36 @@
 
       &-1 {
         &--left {
-          animation: space-nebula-scroll-small 1s ease;
+          animation: space-nebula-scroll-small 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: space-nebula-scroll-small-reverse 1s ease;
+          animation: space-nebula-scroll-small-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
 
       &-2 {
         &--left {
-          animation: space-nebula-scroll-med 1.5s ease;
+          animation: space-nebula-scroll-med 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: space-nebula-scroll-med-reverse 1.5s ease;
+          animation: space-nebula-scroll-med-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
 
       &-3 {
         &--left {
-          animation: space-nebula-scroll-large-reverse 2s ease;
+          animation: space-nebula-scroll-large-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: space-nebula-scroll-large-reverse 2s ease;
+          animation: space-nebula-scroll-large-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
@@ -70,36 +72,36 @@
 
       &-1 {
         &--left {
-          animation: landscape__bg-scroller 1s ease;
+          animation: landscape__bg-scroller 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: landscape__bg-scroller-reverse 1s ease;
+          animation: landscape__bg-scroller-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
 
       &-2 {
         &--left {
-          animation: landscape__bg-scroller 1.2s ease;
+          animation: landscape__bg-scroller 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: landscape__bg-scroller-reverse 1.2s ease;
+          animation: landscape__bg-scroller-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
 
       &-3 {
         &--left {
-          animation: landscape__bg-scroller 1.3s ease;
+          animation: landscape__bg-scroller 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: landscape__bg-scroller-reverse 1.3s ease;
+          animation: landscape__bg-scroller-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
@@ -110,12 +112,12 @@
       &-1 {
 
         &--left {
-          animation: landscape-clouds-scroller 1.5s ease;
+          animation: landscape-clouds-scroller 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: landscape-clouds-scroller-reverse 1.5s ease;
+          animation: landscape-clouds-scroller-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
@@ -123,12 +125,12 @@
       &-2 {
 
         &--left {
-          animation: landscape-clouds-scroller 1s ease;
+          animation: landscape-clouds-scroller 1.2s linear;
           animation-fill-mode: forwards;
         }
 
         &--right {
-          animation: landscape-clouds-scroller-reverse 1s ease;
+          animation: landscape-clouds-scroller-reverse 1.2s linear;
           animation-fill-mode: forwards;
         }
       }
@@ -139,7 +141,7 @@
   @keyframes in-left {
     from {
       opacity: 0;
-      transform: translateX(30%);
+      transform: translateX(10%);
     }
 
     to {
@@ -151,7 +153,7 @@
   @keyframes in-right {
     from {
       opacity: 0;
-      transform: translateX(-30%);
+      transform: translateX(-10%);
     }
 
     to {
@@ -168,7 +170,7 @@
 
     to {
       opacity: 0;
-      transform: translateX(-30%);
+      transform: translateX(-10%);
     }
   }
 
@@ -180,7 +182,7 @@
 
     to {
       opacity: 0;
-      transform: translateX(30%);
+      transform: translateX(10%);
     }
   }
 
@@ -188,33 +190,33 @@
   // Background
   @keyframes space-nebula-scroll-small {
 		from {background-position: 0% 0%;}
-		to {background-position: 100px 0%;}
+		to {background-position: 70px 0%;}
 	}
 
 	@keyframes space-nebula-scroll-med {
 		from {background-position: 0% 0%;}
-		to {background-position: 125px 0%;}
+		to {background-position: 105px 0%;}
 	}
 
 	@keyframes space-nebula-scroll-large {
 		from {background-position: 0% 0%;}
-		to {background-position: 200px 0%;}
+		to {background-position: 55px 0%;}
   }
 
 
 
   @keyframes space-nebula-scroll-small-reverse {
-		from {background-position: 100px 0}
+		from {background-position: 70px 0}
 		to {background-position: 0 0;}
 	}
 
 	@keyframes space-nebula-scroll-med-reverse {
-		from {background-position: 125px 0%;}
+		from {background-position: 100px 0%;}
 		to {background-position: 0 0%;}
 	}
 
 	@keyframes space-nebula-scroll-large-reverse {
-		from {background-position: 200px 0%;}
+		from {background-position: 55px 0%;}
 		to {background-position: 0 0%;}
   }
 
@@ -227,7 +229,7 @@
 
   @keyframes landscape-clouds-scroller {
     from {background-position: 0px 0%;}
-    to {background-position: -50px 0%;}
+    to {background-position: -25px 0%;}
   }
 
 
@@ -237,6 +239,6 @@
   }
 
   @keyframes landscape-clouds-scroller-reverse {
-    from {background-position: -50px 0%;}
+    from {background-position: -25px 0%;}
     to {background-position: 0 0%;}
   }

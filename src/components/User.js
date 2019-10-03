@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../state"
 import { withRouter } from "react-router-dom"
+import { formatNum, abbrNum } from "../utils"
 
 const User = props => {
   const [{ animations, user, isLoading }, dispatch] = useStateValue()
@@ -74,9 +75,18 @@ const User = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const formatNumber = num => {
+    if (num >= 10000) {
+      return abbrNum(num, 0)
+    } else if (num >= 1000 && num < 10000) {
+      return formatNum(num)
+    } else {
+      return num
+    }
+  }
+
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user
-    console.log(data)
     return (
       <div className={`user ${animations.user}`}>
         <div className="user__main">
@@ -100,15 +110,15 @@ const User = props => {
               <ul className="user__stats">
                 <li>
                   <p className="user__stat-title">Posts</p>
-                  <p>{data.posts.length}</p>
+                  <p>{formatNumber(data.posts.length)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Followers</p>
-                  <p>{data.followed_by}</p>
+                  <p>{formatNumber(data.followed_by)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Following</p>
-                  <p>{data.following}</p>
+                  <p>{formatNumber(data.following)}</p>
                 </li>
               </ul>
 
@@ -122,11 +132,11 @@ const User = props => {
               <ul className="user__stats">
                 <li>
                   <p className="user__stat-title">Average Likes</p>
-                  <p>{data.likes_avg}</p>
+                  <p>{formatNumber(data.likes_avg)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Average Comments</p>
-                  <p>{data.comments_avg}</p>
+                  <p>{formatNumber(data.comments_avg)}</p>
                 </li>
               </ul>
             </div>

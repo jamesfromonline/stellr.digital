@@ -14,7 +14,7 @@
         appearance: none;
         border: 0;
         outline: 0;
-        border-bottom: 1px solid white;
+        border-bottom: 2px solid lighten(#70e8c8, 20%);
         background-color: transparent;
         font-family: 'Lato';
         color: white;
@@ -22,7 +22,7 @@
         padding: 10px 5px;
 
         &::-webkit-input-placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.9);
             font-family: 'Tajawal';
         }
     }

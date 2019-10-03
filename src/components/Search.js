@@ -75,7 +75,11 @@ const Search = props => {
       <form onSubmit={handleSearch}>
         <input ref={igSearch} placeholder="username" />
       </form>
-      <SearchButton handleSearch={handleSearch} />
+      <SearchButton
+        error={error}
+        setError={setError}
+        handleSearch={handleSearch}
+      />
       {error && <p>User not found. Try somebody else.</p>}
     </section>
   )

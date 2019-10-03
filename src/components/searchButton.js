@@ -11,6 +11,7 @@ const SearchButton = props => {
 
   useEffect(() => {
     if (isLoading) {
+      console.log("lol")
       setButtonClass("loader active")
     } else {
       setButtonClass("")

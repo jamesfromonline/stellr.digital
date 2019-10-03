@@ -15,16 +15,16 @@ button[type="submit"] {
 	border-radius: 10px;
 	will-change: transform;
 	transition: all .2s ease;
-	border: 2px solid $buttonColor;
+	border: 2px solid lighten(#70e8c8, 20%);
 	cursor: pointer;
 	color: #ffffff;
 	font-size: 16px;
-	color: $buttonColor;
+	color: lighten(#70e8c8, 20%);
 	outline: none;
 	text-align: center;
 
 	&:hover {
-		background: $buttonColor;
+		background: lighten(#70e8c8, 20%);
 		color: #ffffff;
 	}
 	&:active {
@@ -36,6 +36,7 @@ button[type="submit"] {
 		border-radius: 25px;
 		width: 50px;
 		background: transparent;
+		border-color: $buttonColor;
 	}
 	&.loader {
 		border-right: 2px solid #70e8c8;

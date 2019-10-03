@@ -28,113 +28,16 @@ $animationLength: 1.2s;
       }
     }
 
-
-    &__nebula {
-
-      &-1 {
-        &--left {
-          animation: space-nebula-scroll-small 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: space-nebula-scroll-small-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-
-      &-2 {
-        &--left {
-          animation: space-nebula-scroll-med 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: space-nebula-scroll-med-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-
-      &-3 {
-        &--left {
-          animation: space-nebula-scroll-large-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: space-nebula-scroll-large-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
+    &__fade-in {
+      animation: fade-in 0.3s ease-in;
+      animation-fill-mode: forwards;
     }
 
-    &__landscape {
-
-      &-1 {
-        &--left {
-          animation: landscape__bg-scroller 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: landscape__bg-scroller-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-
-      &-2 {
-        &--left {
-          animation: landscape__bg-scroller 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: landscape__bg-scroller-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-
-      &-3 {
-        &--left {
-          animation: landscape__bg-scroller 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: landscape__bg-scroller-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
+    &__fade-out {
+      animation: fade-out 0.3s ease-in;
+      animation-fill-mode: forwards;
     }
 
-    &__clouds {
-
-      &-1 {
-
-        &--left {
-          animation: landscape-clouds-scroller 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: landscape-clouds-scroller-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-
-      &-2 {
-
-        &--left {
-          animation: landscape-clouds-scroller 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-
-        &--right {
-          animation: landscape-clouds-scroller-reverse 1.2s linear;
-          animation-fill-mode: forwards;
-        }
-      }
-    }
 
   }
 
@@ -186,59 +89,12 @@ $animationLength: 1.2s;
     }
   }
 
-
-  // Background
-  @keyframes space-nebula-scroll-small {
-		from {background-position: 0% 0%;}
-		to {background-position: 70px 0%;}
-	}
-
-	@keyframes space-nebula-scroll-med {
-		from {background-position: 0% 0%;}
-		to {background-position: 105px 0%;}
-	}
-
-	@keyframes space-nebula-scroll-large {
-		from {background-position: 0% 0%;}
-		to {background-position: 55px 0%;}
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
-
-
-  @keyframes space-nebula-scroll-small-reverse {
-		from {background-position: 70px 0}
-		to {background-position: 0 0;}
-	}
-
-	@keyframes space-nebula-scroll-med-reverse {
-		from {background-position: 100px 0%;}
-		to {background-position: 0 0%;}
-	}
-
-	@keyframes space-nebula-scroll-large-reverse {
-		from {background-position: 55px 0%;}
-		to {background-position: 0 0%;}
-  }
-
-
-
-  @keyframes landscape__bg-scroller {
-		from {background-position: 0px bottom}
-		to {background-position: -100px bottom}
-  }
-
-  @keyframes landscape-clouds-scroller {
-    from {background-position: 0px 0%;}
-    to {background-position: -25px 0%;}
-  }
-
-
-  @keyframes landscape__bg-scroller-reverse {
-		from {background-position: -100px bottom}
-		to {background-position: 0 bottom}
-  }
-
-  @keyframes landscape-clouds-scroller-reverse {
-    from {background-position: -25px 0%;}
-    to {background-position: 0 0%;}
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
   }

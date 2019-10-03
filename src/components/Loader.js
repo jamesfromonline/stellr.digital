@@ -1,8 +1,5 @@
 import React from "react"
 
-const Loader = () => (
-  <span className="loader">
-    <span className="loader-inner" />
-  </span>
-)
+const Loader = () => <div className="loading loader active" />
+
 export default Loader

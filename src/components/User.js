@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import { useStateValue } from "../state"
 import { withRouter } from "react-router-dom"
+import { formatNum, abbrNum } from "../utils"
+import Loader from "./Loader"
 
 const User = props => {
   const [{ animations, user, isLoading }, dispatch] = useStateValue()
@@ -11,23 +13,7 @@ const User = props => {
       payload: {
         ...animations,
         user: "animate__out--right",
-        search: "animate__in--right",
-        background: {
-          nebula: {
-            one: "animate__nebula-1--right",
-            two: "animate__nebula-2--right",
-            three: "animate__nebula-3--right"
-          },
-          landscape: {
-            one: "animate__landscape-1--right",
-            two: "animate__landscape-2--right",
-            three: "animate__landscape-3--right"
-          },
-          clouds: {
-            one: "animate__clouds-1--right",
-            two: "animate__clouds-2--right"
-          }
-        }
+        search: "animate__in--right"
       }
     })
     setTimeout(() => {
@@ -40,13 +26,14 @@ const User = props => {
     try {
       const data = await fetch(url)
       const json = await data.json()
+      dispatch({ type: "user", payload: json })
+      dispatch({ type: "loading", payload: false })
       dispatch({
-        type: "user",
-        payload: json
-      })
-      dispatch({
-        type: "loading",
-        payload: false
+        type: "animation",
+        payload: {
+          ...animations,
+          user: "animate__fade-in"
+        }
       })
     } catch (e) {
       // setError(true)
@@ -57,23 +44,30 @@ const User = props => {
 
   useEffect(() => {
     if (Object.entries(user).length === 0 && user.constructor === Object) {
-      dispatch({
-        type: "loading",
-        payload: true
-      })
+      dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
       fetchInstagramUser(username)
+    } else {
+      dispatch({ type: "loading", payload: false })
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const formatNumber = num => {
+    if (num >= 10000) {
+      return abbrNum(num, 0)
+    } else if (num >= 1000 && num < 10000) {
+      return formatNum(num)
+    } else {
+      return num
+    }
+  }
+
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user
-    console.log(data)
     return (
-      <div className={`user ${animations.user}`}>
+      <section className={`user ${animations.user}`}>
         <div className="user__main">
           <div className="user__card">
             <div className="user__card-content">
@@ -90,20 +84,19 @@ const User = props => {
                   style={{ backgroundImage: `url(${data.profile_picture})` }}
                 />
               </div>
-              {/* <p className="user__username">{data.username}</p> */}
 
               <ul className="user__stats">
                 <li>
                   <p className="user__stat-title">Posts</p>
-                  <p>{data.posts.length}</p>
+                  <p>{formatNumber(data.posts.length)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Followers</p>
-                  <p>{data.followed_by}</p>
+                  <p>{formatNumber(data.followed_by)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Following</p>
-                  <p>{data.following}</p>
+                  <p>{formatNumber(data.following)}</p>
                 </li>
               </ul>
 
@@ -117,20 +110,20 @@ const User = props => {
               <ul className="user__stats">
                 <li>
                   <p className="user__stat-title">Average Likes</p>
-                  <p>{data.likes_avg}</p>
+                  <p>{formatNumber(data.likes_avg)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Average Comments</p>
-                  <p>{data.comments_avg}</p>
+                  <p>{formatNumber(data.comments_avg)}</p>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     )
   } else {
-    return "LOADING"
+    return <Loader />
   }
 }
 

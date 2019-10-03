@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Tajawal:200&display=swap');
 @import './styles/base';
 
+// To do: make variables/mixins sheets
+
 body {
   overflow-x: hidden;
-  background-color: #333;
+  background-color: #70e8c8;
   font-family: 'Lato';
   color: #333;
 }
@@ -33,9 +35,8 @@ ul {
   top: 0;
   left: 0;
   font-family: 'Tajawal';
-  color: white;
-  font-size: 2rem;
-  font-weight: 200;
+  color: lighten(#70e8c8, 30%);
+  font-size: 2.2rem;
   margin: 10px 0 0 10px;
 }
 

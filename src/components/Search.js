@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react"
 import { withRouter } from "react-router-dom"
 import { useStateValue } from "../state"
+import SearchButton from "./searchButton"
 
 const Search = props => {
   const [{ animations, isLoading }, dispatch] = useStateValue()
@@ -63,7 +64,6 @@ const Search = props => {
       type: "loading",
       payload: true
     })
-    console.log(igSearch.current.classList)
     igSearch.current.classList.remove("test")
     setError(false)
     if (igSearch.current.value.length > 0) {
@@ -79,7 +79,7 @@ const Search = props => {
       <form onSubmit={handleSearch}>
         <input ref={igSearch} placeholder="username" />
       </form>
-      <button onClick={handleSearch}>{isLoading ? "LOADING!" : "GO"}</button>
+      <SearchButton handleSearch={handleSearch} />
       {error && <p>User not found. Try somebody else.</p>}
     </section>
   )

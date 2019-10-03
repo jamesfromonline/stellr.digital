@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useStateValue } from "../state"
 
 const SearchButton = props => {
-  const [{ isLoading }, dispatch] = useStateValue()
+  const [{ isLoading }] = useStateValue()
   const [buttonClass, setButtonClass] = useState("")
 
   const handleClick = e => {
@@ -11,7 +11,6 @@ const SearchButton = props => {
 
   useEffect(() => {
     if (isLoading) {
-      console.log("lol")
       setButtonClass("loader active")
     } else {
       setButtonClass("")
@@ -19,7 +18,12 @@ const SearchButton = props => {
   }, [isLoading])
 
   return (
-    <button className={buttonClass} type="submit" onClick={handleClick}>
+    <button
+      className={buttonClass}
+      type="submit"
+      onClick={handleClick}
+      title="Search"
+    >
       {!isLoading && "GO"}
     </button>
   )

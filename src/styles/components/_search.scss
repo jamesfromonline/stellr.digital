@@ -23,8 +23,9 @@
         transition: all .3s ease;
 
         &::-webkit-input-placeholder {
-            color: lighten(#70e8c8, 30%);
-            font-family: 'Tajawal';
+            color: transparentize(lighten(#70e8c8, 30%), 0.5);
+            font-family: 'Lato';
+            font-weight: 300;
         }
 
         &:focus {

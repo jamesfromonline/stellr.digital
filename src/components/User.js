@@ -12,23 +12,7 @@ const User = props => {
       payload: {
         ...animations,
         user: "animate__out--right",
-        search: "animate__in--right",
-        background: {
-          nebula: {
-            one: "animate__nebula-1--right",
-            two: "animate__nebula-2--right",
-            three: "animate__nebula-3--right"
-          },
-          landscape: {
-            one: "animate__landscape-1--right",
-            two: "animate__landscape-2--right",
-            three: "animate__landscape-3--right"
-          },
-          clouds: {
-            one: "animate__clouds-1--right",
-            two: "animate__clouds-2--right"
-          }
-        }
+        search: "animate__in--right"
       }
     })
     setTimeout(() => {
@@ -41,14 +25,8 @@ const User = props => {
     try {
       const data = await fetch(url)
       const json = await data.json()
-      dispatch({
-        type: "user",
-        payload: json
-      })
-      dispatch({
-        type: "loading",
-        payload: false
-      })
+      dispatch({ type: "user", payload: json })
+      dispatch({ type: "loading", payload: false })
     } catch (e) {
       // setError(true)
       props.history.push("/")
@@ -58,20 +36,13 @@ const User = props => {
 
   useEffect(() => {
     if (Object.entries(user).length === 0 && user.constructor === Object) {
-      dispatch({
-        type: "loading",
-        payload: true
-      })
+      dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
       fetchInstagramUser(username)
     } else {
-      dispatch({
-        type: "loading",
-        payload: false
-      })
+      dispatch({ type: "loading", payload: false })
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -88,7 +59,7 @@ const User = props => {
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user
     return (
-      <div className={`user ${animations.user}`}>
+      <section className={`user ${animations.user}`}>
         <div className="user__main">
           <div className="user__card">
             <div className="user__card-content">
@@ -105,7 +76,6 @@ const User = props => {
                   style={{ backgroundImage: `url(${data.profile_picture})` }}
                 />
               </div>
-              {/* <p className="user__username">{data.username}</p> */}
 
               <ul className="user__stats">
                 <li>
@@ -142,7 +112,7 @@ const User = props => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     )
   } else {
     return "LOADING"

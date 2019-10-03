@@ -125,12 +125,7 @@ const User = props => {
       </section>
     )
   } else {
-    return (
-      <div>
-        <p>OMG</p>
-        <Loader />
-      </div>
-    )
+    return <Loader />
   }
 }
 

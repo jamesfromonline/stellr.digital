@@ -44,6 +44,7 @@ const User = props => {
 
   useEffect(() => {
     if (Object.entries(user).length === 0 && user.constructor === Object) {
+      console.log("running")
       dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
@@ -85,7 +86,7 @@ const User = props => {
                 />
               </div>
 
-              <ul className="user__stats">
+              <ul className="user__stats" style={{ marginTop: "20px" }}>
                 <li>
                   <p className="user__stat-title">Posts</p>
                   <p>{formatNumber(data.posts.length)}</p>
@@ -124,7 +125,12 @@ const User = props => {
       </section>
     )
   } else {
-    return <Loader />
+    return (
+      <div>
+        <p>OMG</p>
+        <Loader />
+      </div>
+    )
   }
 }
 

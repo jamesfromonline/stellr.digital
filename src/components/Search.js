@@ -31,6 +31,7 @@ const Search = props => {
       startAnimations()
       setTimeout(() => {
         props.history.push(username)
+        dispatch({ type: "loading", payload: false })
       }, 500)
     } catch (e) {
       dispatch({ type: "loading", payload: false })

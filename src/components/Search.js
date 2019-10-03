@@ -6,6 +6,7 @@ import SearchButton from "./searchButton"
 const Search = props => {
   const [{ animations, isLoading }, dispatch] = useStateValue()
   const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
   const igSearch = useRef(null)
 
   const startAnimations = () => {
@@ -44,12 +45,19 @@ const Search = props => {
         type: "user",
         payload: json
       })
+      setError(false)
+      setErrorMessage("")
       startAnimations()
       setTimeout(() => {
         props.history.push(username)
       }, 500)
     } catch (e) {
+      dispatch({
+        type: "loading",
+        payload: false
+      })
       setError(true)
+      setErrorMessage(`Can't find that username. Did you spell it correctly?`)
       console.error(`User ${username} not found.`)
     }
   }
@@ -62,25 +70,35 @@ const Search = props => {
     })
     igSearch.current.classList.remove("test")
     setError(false)
+    setErrorMessage("")
     if (igSearch.current.value.length > 0) {
       fetchInstagramUser(igSearch.current.value)
     } else {
+      dispatch({
+        type: "loading",
+        payload: false
+      })
       setError(true)
+      setErrorMessage("You must enter at least 1 character")
     }
   }
+
+  const errorClass = error
+    ? "search__error search__error--active"
+    : "search__error"
 
   return (
     <section className={`search ${animations.search}`}>
       <h1 className="logo">stellr</h1>
       <form onSubmit={handleSearch}>
-        <input ref={igSearch} placeholder="username" />
+        <input ref={igSearch} placeholder="USERNAME" />
       </form>
       <SearchButton
         error={error}
         setError={setError}
         handleSearch={handleSearch}
       />
-      {error && <p>User not found. Try somebody else.</p>}
+      <p className={errorClass}>{errorMessage}</p>
     </section>
   )
 }

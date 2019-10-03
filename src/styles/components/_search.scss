@@ -14,27 +14,32 @@
         appearance: none;
         border: 0;
         outline: 0;
-        border-bottom: 2px solid lighten(#70e8c8, 20%);
+        border-bottom: 2px solid lighten(#70e8c8, 30%);
         background-color: transparent;
         font-family: 'Lato';
         color: white;
         font-size: 2rem;
         padding: 10px 5px;
+        transition: all .3s ease;
 
         &::-webkit-input-placeholder {
-            color: rgba(255, 255, 255, 0.9);
+            color: lighten(#70e8c8, 30%);
             font-family: 'Tajawal';
+        }
+
+        &:focus {
+            border-bottom-color: lighten(#e870d0, 15%);
         }
     }
 
-    button {
-        border: none;
-        background-color: transparent;
-        color: #fff;
+    &__error {
         font-family: 'Lato';
-        font-weight: 300;
-        width: 200px;
-        height: 50px;
-        font-size: 2rem;
+        color: lighten(#70e8c8, 30%);
+        opacity: 0;
+        height: 10px;
+
+        &--active {
+            opacity: 1;
+        }
     }
 }

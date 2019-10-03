@@ -12,7 +12,7 @@ function App() {
   return (
     <Div100vh>
       <main className="app">
-        <Background />
+        {/* <Background /> */}
         <Router>
           <Switch>
             <Route exact path="/" component={Search} />

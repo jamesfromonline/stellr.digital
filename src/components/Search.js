@@ -44,10 +44,6 @@ const Search = props => {
         type: "user",
         payload: json
       })
-      dispatch({
-        type: "loading",
-        payload: false
-      })
       startAnimations()
       setTimeout(() => {
         props.history.push(username)

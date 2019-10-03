@@ -64,6 +64,11 @@ const User = props => {
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
       fetchInstagramUser(username)
+    } else {
+      dispatch({
+        type: "loading",
+        payload: false
+      })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,4 +1,4 @@
-$buttonColor: #FF5126;
+$buttonColor: #e870d0;
 $backgroundColor: #DAEBEE;
 $successColor: #3BB873;
 
@@ -38,7 +38,7 @@ button[type="submit"] {
 		background: transparent;
 	}
 	&.loader {
-		border-right: 2px solid #ffffff;
+		border-right: 2px solid #70e8c8;
 		animation: loader .4s linear infinite;
 	}
 	&.success {

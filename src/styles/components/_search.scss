@@ -28,7 +28,8 @@
             font-weight: 300;
         }
 
-        &:focus {
+        &:focus,
+        &:active {
             border-bottom-color: lighten(#e870d0, 15%);
         }
     }

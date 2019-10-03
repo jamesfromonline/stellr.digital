@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useStateValue } from "../state"
 import { withRouter } from "react-router-dom"
 import { formatNum, abbrNum } from "../utils"
+import Loader from "./Loader"
 
 const User = props => {
   const [{ animations, user, isLoading }, dispatch] = useStateValue()
@@ -27,6 +28,13 @@ const User = props => {
       const json = await data.json()
       dispatch({ type: "user", payload: json })
       dispatch({ type: "loading", payload: false })
+      dispatch({
+        type: "animation",
+        payload: {
+          ...animations,
+          user: "animate__fade-in"
+        }
+      })
     } catch (e) {
       // setError(true)
       props.history.push("/")
@@ -115,7 +123,7 @@ const User = props => {
       </section>
     )
   } else {
-    return "LOADING"
+    return <Loader />
   }
 }
 

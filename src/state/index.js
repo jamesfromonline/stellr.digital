@@ -6,7 +6,7 @@ export const initialState = {
   user: {},
   isLoading: false,
   animations: {
-    home: null,
+    search: "animate__fade-in",
     user: null
   }
 }

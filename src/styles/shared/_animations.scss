@@ -5,12 +5,12 @@ $animationLength: 1.2s;
     &__in {
 
       &--left {
-        animation: in-left .6s linear;
+        animation: in-left .6s cubic-bezier(0.76, -0.76, 0.25, 1.26);
         animation-fill-mode: forwards;
       }
 
       &--right {
-        animation: in-right .6s linear;
+        animation: in-right .6s cubic-bezier(0.76, -0.76, 0.25, 1.26);
         animation-fill-mode: forwards;
       }
     }
@@ -18,12 +18,12 @@ $animationLength: 1.2s;
     &__out {
 
       &--left {
-        animation: out-left .6s linear;
+        animation: out-left .6s cubic-bezier(0.76, -0.76, 0.25, 1.26);
         animation-fill-mode: forwards;
       }
 
       &--right {
-        animation: out-right .6s linear;
+        animation: out-right .6s cubic-bezier(0.76, -0.76, 0.25, 1.26);
         animation-fill-mode: forwards;
       }
     }

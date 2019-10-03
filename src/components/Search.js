@@ -65,21 +65,23 @@ const Search = props => {
         <input spellCheck="false" ref={igSearch} placeholder="username" />
       </form> */}
 
-      <form className="wrap" onSubmit={handleSearch}>
-        <input
-          type="text"
-          spellCheck="false"
-          ref={igSearch}
-          placeholder="username"
-        />
-        <div className="bg" />
+      <div className="search__area">
+        <form className="wrap" onSubmit={handleSearch}>
+          <input
+            type="text"
+            spellCheck="false"
+            ref={igSearch}
+            placeholder="username"
+          />
+          <div className="bg" />
+        </form>
         <SearchButton
           error={error}
           setError={setError}
           handleSearch={handleSearch}
         />
-      </form>
-      <p className={errorClass}>{errorMessage}</p>
+        <p className={errorClass}>{errorMessage}</p>
+      </div>
     </section>
   )
 }

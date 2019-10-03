@@ -101,10 +101,7 @@ const User = props => {
               </ul>
 
               <div className="user__engagement-wrapper">
-                <p className="user__stat-title">Engagement Rate</p>
-                <p className="user__engagement-rate">
-                  {data.totalEngagementRate}%
-                </p>
+                {/* Most Popular posts */}
               </div>
 
               <ul className="user__stats">
@@ -115,6 +112,10 @@ const User = props => {
                 <li>
                   <p className="user__stat-title">Average Comments</p>
                   <p>{formatNumber(data.comments_avg)}</p>
+                </li>
+                <li>
+                  <p className="user__stat-title">Engagement Rate</p>
+                  <p>{data.totalEngagementRate}%</p>
                 </li>
               </ul>
             </div>

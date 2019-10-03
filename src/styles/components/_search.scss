@@ -1,3 +1,5 @@
+$white: lighten(#70e8c8, 30%);
+
 .search {
     display: flex;
     flex-direction: column;
@@ -10,33 +12,33 @@
         margin-bottom: 15px;
     }
 
-    input {
-        appearance: none;
-        border: 0;
-        outline: 0;
-        border-bottom: 2px solid lighten(#70e8c8, 30%);
-        background-color: transparent;
-        font-family: 'Lato';
-        color: white;
-        font-size: 2rem;
-        padding: 10px 5px;
-        transition: all .3s ease;
+    // input {
+    //     appearance: none;
+    //     border: 0;
+    //     outline: 0;
+    //     border-bottom: 2px solid lighten(#70e8c8, 30%);
+    //     background-color: transparent;
+    //     font-family: 'Lato';
+    //     color: white;
+    //     font-size: 2rem;
+    //     padding: 10px 5px;
+    //     transition: all .3s ease;
 
-        &::-webkit-input-placeholder {
-            color: transparentize(lighten(#70e8c8, 30%), 0.5);
-            font-family: 'Lato';
-            font-weight: 300;
-        }
+    //     &::-webkit-input-placeholder {
+    //         color: transparentize(lighten(#70e8c8, 30%), 0.5);
+    //         font-family: 'Lato';
+    //         font-weight: 300;
+    //     }
 
-        &:focus,
-        &:active {
-            border-bottom-color: lighten(#e870d0, 15%);
-        }
-    }
+    //     &:focus,
+    //     &:active {
+    //         border-bottom-color: lighten(#e870d0, 15%);
+    //     }
+    // }
 
     &__error {
         font-family: 'Lato';
-        color: lighten(#70e8c8, 30%);
+        color: $white;
         opacity: 0;
         height: 10px;
 
@@ -45,3 +47,51 @@
         }
     }
 }
+
+
+.wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid $white;
+    outline: none;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 2;
+    transition: all .3s ease;
+
+  }
+
+  input::-webkit-input-placeholder {
+    color: $white;
+    transition: color .4s ease;
+  }
+
+  input:focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+
+  .bg {
+    height: 0%;
+    width: 100%;
+    background: $white;
+    position: absolute;
+    border-radius: 10px;
+    bottom: 0;
+    z-index: -2;
+    transition: height 0.7s cubic-bezier(0.76, -0.76, 0.25, 1.26);
+  }
+
+  input:focus + .bg {
+    height: 100%;
+    border-radius: 10px;
+  }

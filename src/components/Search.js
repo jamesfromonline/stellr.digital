@@ -61,14 +61,24 @@ const Search = props => {
   return (
     <section className={`search ${animations.search}`}>
       <h1 className="logo">stellr</h1>
-      <form onSubmit={handleSearch}>
+      {/* <form onSubmit={handleSearch}>
         <input spellCheck="false" ref={igSearch} placeholder="username" />
+      </form> */}
+
+      <form className="wrap" onSubmit={handleSearch}>
+        <input
+          type="text"
+          spellCheck="false"
+          ref={igSearch}
+          placeholder="username"
+        />
+        <div className="bg" />
+        <SearchButton
+          error={error}
+          setError={setError}
+          handleSearch={handleSearch}
+        />
       </form>
-      <SearchButton
-        error={error}
-        setError={setError}
-        handleSearch={handleSearch}
-      />
       <p className={errorClass}>{errorMessage}</p>
     </section>
   )

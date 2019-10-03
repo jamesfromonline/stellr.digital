@@ -4,8 +4,24 @@ export const StateContext = createContext()
 
 export const initialState = {
   user: {},
+  isLoading: false,
   animations: {
-    background: null,
+    background: {
+      nebula: {
+        one: "",
+        two: "",
+        three: ""
+      },
+      landscape: {
+        one: "",
+        two: "",
+        three: ""
+      },
+      clouds: {
+        one: "",
+        two: ""
+      }
+    },
     home: null,
     user: null
   }

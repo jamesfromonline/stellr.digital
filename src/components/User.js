@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useStateValue } from "../state"
 import { withRouter } from "react-router-dom"
 import { formatNum, abbrNum } from "../utils"
 import Loader from "./Loader"
+import BottomScrollListener from "react-bottom-scroll-listener"
 
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue()
@@ -22,9 +23,7 @@ const User = props => {
     }, 500)
   }
 
-  const handlePagination = () => {
-    getUserMedia(user.user.id)
-  }
+  const handlePagination = () => getUserMedia(user.user.id)
 
   const getUserMedia = async id => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
@@ -52,11 +51,6 @@ const User = props => {
       })
 
       setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
-
-      // console.log(
-      //   json.data.user.edge_owner_to_timeline_media.edges[0].node
-      //     .edge_media_preview_like
-      // )
     } catch (e) {
       console.error(e)
     }
@@ -78,7 +72,7 @@ const User = props => {
         }
       })
 
-      getUserMedia(json.user.id, "")
+      getUserMedia(json.user.id)
     } catch (e) {
       // setError(true)
       props.history.push("/")
@@ -87,7 +81,7 @@ const User = props => {
   }
 
   useEffect(() => {
-    console.log(posts)
+    console.log("posts", posts)
     if (Object.entries(user).length === 0 && user.constructor === Object) {
       dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
@@ -97,7 +91,7 @@ const User = props => {
       dispatch({ type: "loading", payload: false })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [posts])
+  }, [])
 
   const formatNumber = num => {
     if (num >= 10000) {
@@ -111,6 +105,8 @@ const User = props => {
 
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user
+    const feed = posts.posts
+
     return (
       <section className={`user ${animations.user}`}>
         <button onClick={handlePagination}>GO</button>
@@ -146,9 +142,24 @@ const User = props => {
                 </li>
               </ul>
 
-              <div className="user__engagement-wrapper">
-                {/* Most Popular posts */}
-              </div>
+              <BottomScrollListener onBottom={handlePagination}>
+                {scrollRef => (
+                  <div ref={scrollRef} className="user__engagement-wrapper">
+                    {/* Most Popular posts */}
+                    {feed.map(post => {
+                      const p = post.node
+                      return (
+                        <div className="feed__thumbnail" key={p.id}>
+                          <img
+                            src={p.thumbnail_src}
+                            alt="saying something because lintr"
+                          />
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </BottomScrollListener>
 
               <ul className="user__stats">
                 <li>

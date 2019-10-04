@@ -144,18 +144,38 @@
     }
 
     &__engagement-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      flex: 1;
-      color: #444;
+      overflow-y: auto;
+
+      @media (min-width: 769px) {
+        grid-template-columns: 3fr 3fr 3fr;
+      }
+
+      @media (orientation: landscape) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
 
     &__engagement-rate {
       font-size: 3rem;
       margin: 0;
       padding: 10px 0;
+    }
+  }
+
+
+  .feed {
+
+    &__thumbnail {
+      width: 100%;
+      height: 100%;
     }
   }

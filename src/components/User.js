@@ -109,7 +109,6 @@ const User = props => {
 
     return (
       <section className={`user ${animations.user}`}>
-        <button onClick={handlePagination}>GO</button>
         <div className="user__main">
           <div className="user__card">
             <div className="user__card-content">

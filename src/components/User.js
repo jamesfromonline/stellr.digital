@@ -8,6 +8,7 @@ import BottomScrollListener from "react-bottom-scroll-listener"
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue()
   const [end, setEnd] = useState("")
+  const [mediaLoading, setMediaLoading] = useState(true)
 
   const goHome = () => {
     dispatch({
@@ -65,7 +66,7 @@ const User = props => {
       })
 
       setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
-      dispatch({ type: "loading", payload: false })
+      setMediaLoading(false)
     } catch (e) {
       console.error(e)
     }
@@ -102,9 +103,11 @@ const User = props => {
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
       fetchInstagramUser(username)
+      setMediaLoading(true)
     } else {
-      dispatch({ type: "loading", payload: true })
+      dispatch({ type: "loading", payload: false })
       getUserMedia(user.user.id)
+      setMediaLoading(true)
       // dispatch({ type: "loading", payload: false })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -123,6 +126,27 @@ const User = props => {
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user
     const feed = posts.posts
+
+    const mediaLoader = <Loader main="#70e8c8" sub="#ffffff" />
+
+    const mappedFeed = feed.map(post => {
+      const p = post.node
+      return (
+        <div className="feed__thumbnail" key={p.id}>
+          <img src={p.thumbnail_src} alt="saying something because lintr" />
+        </div>
+      )
+    })
+
+    const grid = (
+      <BottomScrollListener onBottom={mediaLoading ? null : handlePagination}>
+        {scrollRef => (
+          <div ref={scrollRef} className="feed__grid">
+            {mappedFeed}
+          </div>
+        )}
+      </BottomScrollListener>
+    )
 
     return (
       <section className={`user ${animations.user}`}>
@@ -158,24 +182,7 @@ const User = props => {
                 </li>
               </ul>
 
-              <BottomScrollListener onBottom={handlePagination}>
-                {scrollRef => (
-                  <div ref={scrollRef} className="user__engagement-wrapper">
-                    {/* Most Popular posts */}
-                    {feed.map(post => {
-                      const p = post.node
-                      return (
-                        <div className="feed__thumbnail" key={p.id}>
-                          <img
-                            src={p.thumbnail_src}
-                            alt="saying something because lintr"
-                          />
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
-              </BottomScrollListener>
+              <div className="feed">{mediaLoading ? mediaLoader : grid}</div>
 
               <ul className="user__stats">
                 <li>

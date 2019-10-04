@@ -30,6 +30,7 @@ const Search = props => {
       setError(false)
       setErrorMessage("")
       startAnimations()
+      console.log(json)
       setTimeout(() => {
         props.history.push(username)
         dispatch({ type: "loading", payload: false })

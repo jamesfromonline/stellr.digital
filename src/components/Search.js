@@ -49,7 +49,7 @@ const Search = props => {
     setError(false)
     setErrorMessage("")
     if (igSearch.current.value.length > 0) {
-      fetchInstagramUser(igSearch.current.value)
+      fetchInstagramUser(igSearch.current.value.toLowerCase())
     } else {
       dispatch({ type: "loading", payload: false })
       setError(true)

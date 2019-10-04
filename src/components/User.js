@@ -142,7 +142,7 @@ const User = props => {
     const grid = (
       <BottomScrollListener onBottom={mediaLoading ? null : handlePagination}>
         {scrollRef => (
-          <div ref={scrollRef} className="feed__grid">
+          <div ref={scrollRef} className="feed__grid animate__fade-in">
             {mappedFeed}
           </div>
         )}

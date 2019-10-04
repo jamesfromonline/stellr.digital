@@ -21,16 +21,15 @@ const Search = props => {
   }
 
   const fetchInstagramUser = async username => {
-    // const url = `http://167.99.121.93:5000/instagram?username=${username}`
-    const url = `http://localhost:5000/instagram?username=${username}`
+    const url = `http://167.99.121.93:5000/instagram?username=${username}`
+    // const url = `http://localhost:5000/instagram?username=${username}`
     try {
       const data = await fetch(url),
         json = await data.json()
-      dispatch({ type: "user", payload: json })
+      await dispatch({ type: "user", payload: json })
       setError(false)
       setErrorMessage("")
       startAnimations()
-      console.log(json)
       setTimeout(() => {
         props.history.push(username)
         dispatch({ type: "loading", payload: false })
@@ -64,10 +63,6 @@ const Search = props => {
   return (
     <section className={`search ${animations.search}`}>
       <h1 className="logo">stellr</h1>
-      {/* <form onSubmit={handleSearch}>
-        <input spellCheck="false" ref={igSearch} placeholder="username" />
-      </form> */}
-
       <div className="search__area">
         <form className="wrap" onSubmit={handleSearch}>
           <input

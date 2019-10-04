@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react"
-import { useStateValue } from "../state"
-import { withRouter } from "react-router-dom"
-import { formatNum, abbrNum } from "../utils"
-import Loader from "./Loader"
+import React, { useState, useEffect } from "react"
 import BottomScrollListener from "react-bottom-scroll-listener"
+import { formatNum, abbrNum } from "../utils"
+import { withRouter } from "react-router-dom"
+import { useStateValue } from "../state"
+import Loader from "./Loader"
 
 const User = props => {
-  const [{ animations, user, posts, isLoading }, dispatch] = useStateValue()
-  const [end, setEnd] = useState("")
-  const [mediaLoading, setMediaLoading] = useState(true)
+  const [{ animations, user, posts, isLoading }, dispatch] = useStateValue(),
+    [mediaLoading, setMediaLoading] = useState(true),
+    [end, setEnd] = useState("")
 
   const goHome = () => {
     dispatch({
@@ -21,11 +21,7 @@ const User = props => {
     })
 
     setTimeout(() => {
-      dispatch({
-        type: "user",
-        payload: {}
-      })
-
+      dispatch({ type: "user", payload: {} })
       dispatch({
         type: "posts",
         payload: {
@@ -45,11 +41,11 @@ const User = props => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
 
     try {
-      const data = await fetch(url)
-      const json = await data.json()
+      const data = await fetch(url),
+        json = await data.json()
 
-      const currentPosts = posts.posts
-      const fetchedPosts = json.data.user.edge_owner_to_timeline_media.edges
+      const currentPosts = posts.posts,
+        fetchedPosts = json.data.user.edge_owner_to_timeline_media.edges
 
       if (currentPosts.length < posts.count)
         fetchedPosts.forEach(p => currentPosts.push(p))
@@ -74,42 +70,38 @@ const User = props => {
   }
 
   const fetchInstagramUser = async username => {
-    // const url = `http://167.99.121.93:5000/instagram?username=${username}`
-    const url = `http://localhost:5000/instagram?username=${username}`
+    const url = `http://167.99.121.93:5000/instagram?username=${username}`
+    // const url = `http://localhost:5000/instagram?username=${username}`
     try {
-      const data = await fetch(url)
-      const json = await data.json()
-      dispatch({ type: "user", payload: json })
+      const data = await fetch(url),
+        json = await data.json()
+
+      await dispatch({ type: "user", payload: json })
       dispatch({ type: "loading", payload: false })
       dispatch({
         type: "animation",
-        payload: {
-          ...animations,
-          user: "animate__fade-in"
-        }
+        payload: { ...animations, user: "animate__fade-in" }
       })
 
       getUserMedia(json.user.id)
     } catch (e) {
-      // setError(true)
       props.history.push("/")
       console.error(`User ${username} not found.`)
     }
   }
 
   useEffect(() => {
-    console.log("posts", posts)
+    const path = props.history.location.pathname,
+      username = path.slice(1, path.length)
+
     if (Object.entries(user).length === 0 && user.constructor === Object) {
-      dispatch({ type: "loading", payload: true })
-      const path = props.history.location.pathname
-      const username = path.slice(1, path.length)
-      fetchInstagramUser(username)
       setMediaLoading(true)
+      dispatch({ type: "loading", payload: true })
+      fetchInstagramUser(username)
     } else {
+      setMediaLoading(true)
       dispatch({ type: "loading", payload: false })
       getUserMedia(user.user.id)
-      setMediaLoading(true)
-      // dispatch({ type: "loading", payload: false })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -125,8 +117,8 @@ const User = props => {
   }
 
   if (!isLoading && Object.entries(user).length > 0) {
-    const data = user.user
-    const feed = posts.posts
+    const data = user.user,
+      feed = posts.posts
 
     const mediaLoader = <Loader main="#70e8c8" sub="#ffffff" />
 

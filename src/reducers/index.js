@@ -5,6 +5,11 @@ export const rootReducer = (state, action) => {
         ...state,
         user: action.payload
       }
+    case "posts":
+      return {
+        ...state,
+        posts: action.payload
+      }
     case "animation":
       return {
         ...state,

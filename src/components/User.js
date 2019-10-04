@@ -5,8 +5,8 @@ import { formatNum, abbrNum } from "../utils"
 import Loader from "./Loader"
 
 const User = props => {
-  const [{ animations, user, isLoading }, dispatch] = useStateValue()
-  const [page, setPage] = useState(0)
+  const [{ animations, user, posts, isLoading }, dispatch] = useStateValue()
+  const [end, setEnd] = useState("")
 
   const goHome = () => {
     dispatch({
@@ -23,18 +23,40 @@ const User = props => {
   }
 
   const handlePagination = () => {
-    setPage(page + 1)
-    getUserMedia(user.user.id, user.user.feed_info.end_cursor)
+    getUserMedia(user.user.id)
   }
 
-  const getUserMedia = async (id, end) => {
+  const getUserMedia = async id => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
 
     try {
       const data = await fetch(url)
       const json = await data.json()
 
-      console.log(json)
+      const currentPosts = posts.posts
+      const fetchedPosts = json.data.user.edge_owner_to_timeline_media.edges
+
+      if (currentPosts.length < posts.count)
+        fetchedPosts.forEach(p => currentPosts.push(p))
+
+      dispatch({
+        type: "posts",
+        payload: {
+          count: json.data.user.edge_owner_to_timeline_media.count,
+          posts:
+            currentPosts.length <= 0
+              ? json.data.user.edge_owner_to_timeline_media.edges
+              : currentPosts,
+          page_info: json.data.user.edge_owner_to_timeline_media.page_info
+        }
+      })
+
+      setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
+
+      // console.log(
+      //   json.data.user.edge_owner_to_timeline_media.edges[0].node
+      //     .edge_media_preview_like
+      // )
     } catch (e) {
       console.error(e)
     }
@@ -65,6 +87,7 @@ const User = props => {
   }
 
   useEffect(() => {
+    console.log(posts)
     if (Object.entries(user).length === 0 && user.constructor === Object) {
       dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
@@ -74,7 +97,7 @@ const User = props => {
       dispatch({ type: "loading", payload: false })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [posts])
 
   const formatNumber = num => {
     if (num >= 10000) {

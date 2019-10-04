@@ -4,6 +4,11 @@ export const StateContext = createContext()
 
 export const initialState = {
   user: {},
+  posts: {
+    count: 0,
+    posts: [],
+    page_info: {}
+  },
   isLoading: false,
   animations: {
     search: "animate__fade-in",

@@ -18,7 +18,21 @@ const User = props => {
         search: "animate__in--right"
       }
     })
+
     setTimeout(() => {
+      dispatch({
+        type: "user",
+        payload: {}
+      })
+
+      dispatch({
+        type: "posts",
+        payload: {
+          count: 0,
+          posts: [],
+          page_info: {}
+        }
+      })
       props.history.push("/")
     }, 500)
   }
@@ -51,6 +65,7 @@ const User = props => {
       })
 
       setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
+      dispatch({ type: "loading", payload: false })
     } catch (e) {
       console.error(e)
     }
@@ -88,7 +103,9 @@ const User = props => {
       const username = path.slice(1, path.length)
       fetchInstagramUser(username)
     } else {
-      dispatch({ type: "loading", payload: false })
+      dispatch({ type: "loading", payload: true })
+      getUserMedia(user.user.id)
+      // dispatch({ type: "loading", payload: false })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

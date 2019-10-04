@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useStateValue } from "../state"
 import { withRouter } from "react-router-dom"
 import { formatNum, abbrNum } from "../utils"
@@ -6,6 +6,7 @@ import Loader from "./Loader"
 
 const User = props => {
   const [{ animations, user, isLoading }, dispatch] = useStateValue()
+  const [page, setPage] = useState(0)
 
   const goHome = () => {
     dispatch({
@@ -21,8 +22,27 @@ const User = props => {
     }, 500)
   }
 
+  const handlePagination = () => {
+    setPage(page + 1)
+    getUserMedia(user.user.id, user.user.feed_info.end_cursor)
+  }
+
+  const getUserMedia = async (id, end) => {
+    const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
+
+    try {
+      const data = await fetch(url)
+      const json = await data.json()
+
+      console.log(json)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   const fetchInstagramUser = async username => {
-    const url = `http://167.99.121.93:5000/instagram?username=${username}`
+    // const url = `http://167.99.121.93:5000/instagram?username=${username}`
+    const url = `http://localhost:5000/instagram?username=${username}`
     try {
       const data = await fetch(url)
       const json = await data.json()
@@ -35,6 +55,8 @@ const User = props => {
           user: "animate__fade-in"
         }
       })
+
+      getUserMedia(json.user.id, "")
     } catch (e) {
       // setError(true)
       props.history.push("/")
@@ -44,7 +66,6 @@ const User = props => {
 
   useEffect(() => {
     if (Object.entries(user).length === 0 && user.constructor === Object) {
-      console.log("running")
       dispatch({ type: "loading", payload: true })
       const path = props.history.location.pathname
       const username = path.slice(1, path.length)
@@ -69,6 +90,7 @@ const User = props => {
     const data = user.user
     return (
       <section className={`user ${animations.user}`}>
+        <button onClick={handlePagination}>GO</button>
         <div className="user__main">
           <div className="user__card">
             <div className="user__card-content">
@@ -89,7 +111,7 @@ const User = props => {
               <ul className="user__stats" style={{ marginTop: "20px" }}>
                 <li>
                   <p className="user__stat-title">Posts</p>
-                  <p>{formatNumber(data.posts.length)}</p>
+                  <p>{formatNumber(data.feed_info.posts_count)}</p>
                 </li>
                 <li>
                   <p className="user__stat-title">Followers</p>

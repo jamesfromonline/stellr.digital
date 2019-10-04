@@ -38,7 +38,8 @@ const User = props => {
     }, 500)
   }
 
-  const handlePagination = () => getUserMedia(user.user.id)
+  const handlePagination = () =>
+    posts.posts.length < posts.count && getUserMedia(user.user.id)
 
   const getUserMedia = async id => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`

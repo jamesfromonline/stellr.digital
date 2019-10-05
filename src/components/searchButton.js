@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react"
-import { useStateValue } from "../state"
 
 const SearchButton = props => {
-  const [{ isLoading }] = useStateValue(),
-    [buttonClass, setButtonClass] = useState("")
+  const [buttonClass, setButtonClass] = useState("")
 
   useEffect(() => {
-    if (isLoading) {
+    if (props.isLoading) {
       setButtonClass("loader active")
     } else {
       setButtonClass("")
     }
-  }, [isLoading])
+  }, [props.isLoading])
 
-  const handleClick = e => {
-    props.handleSearch(e)
-  }
+  const handleClick = e => props.handleSearch()
 
   return (
     <button
@@ -24,7 +20,7 @@ const SearchButton = props => {
       onClick={handleClick}
       title="Search"
     >
-      {!isLoading && "go"}
+      {!props.isLoading && "go"}
     </button>
   )
 }

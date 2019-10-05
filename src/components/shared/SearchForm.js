@@ -1,11 +1,9 @@
-import React, { useRef } from "react"
+import React from "react"
 
 const SearchForm = props => {
-  const input = useRef(null)
-
   const handleSearch = e => {
     e.preventDefault()
-    props.handleSearch(input)
+    props.handleSearch()
   }
 
   return (
@@ -13,7 +11,7 @@ const SearchForm = props => {
       <input
         type="text"
         spellCheck="false"
-        ref={input}
+        onChange={props.handleChange}
         placeholder="username"
       />
       <div className="bg" />

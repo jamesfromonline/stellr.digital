@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
 import { withRouter } from "react-router-dom"
+import SearchForm from "./shared/SearchForm"
 import SearchButton from "./searchButton"
 import { useStateValue } from "../state"
 
@@ -42,13 +43,12 @@ const Search = props => {
     }
   }
 
-  const handleSearch = e => {
-    e.preventDefault()
+  const handleSearch = input => {
     dispatch({ type: "loading", payload: true })
     setError(false)
     setErrorMessage("")
-    if (igSearch.current.value.length > 0) {
-      fetchInstagramUser(igSearch.current.value.toLowerCase())
+    if (input.current.value.length > 0) {
+      fetchInstagramUser(input.current.value.toLowerCase())
     } else {
       dispatch({ type: "loading", payload: false })
       setError(true)
@@ -64,15 +64,7 @@ const Search = props => {
     <section className={`search ${animations.search}`}>
       <h1 className="logo">stellr</h1>
       <div className="search__area">
-        <form className="wrap" onSubmit={handleSearch}>
-          <input
-            type="text"
-            spellCheck="false"
-            ref={igSearch}
-            placeholder="username"
-          />
-          <div className="bg" />
-        </form>
+        <SearchForm handleSearch={handleSearch} />
         <SearchButton
           error={error}
           setError={setError}

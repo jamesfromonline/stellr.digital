@@ -13,7 +13,7 @@ const UserFeed = props => {
 
   return (
     <BottomScrollListener
-      onBottom={props.mediaLoading ? null : props.handlePagination}
+      onBottom={!props.mediaLoading && props.handlePagination}
     >
       {scrollRef => (
         <div ref={scrollRef} className="feed__grid animate__fade-in">

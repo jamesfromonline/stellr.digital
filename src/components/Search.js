@@ -27,7 +27,7 @@ const Search = props => {
     try {
       const data = await fetch(url),
         json = await data.json()
-      await dispatch({ type: "user", payload: json })
+      dispatch({ type: "user", payload: json })
       setError(false)
       setErrorMessage("")
       startAnimations()

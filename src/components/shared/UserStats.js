@@ -2,7 +2,6 @@ import React from "react"
 
 const UserStats = props => {
   const data = props.data
-  console.log(data)
 
   const items = data.map(item => {
     return (

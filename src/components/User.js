@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import BottomScrollListener from "react-bottom-scroll-listener"
 import { formatNum, abbrNum } from "../utils"
 import { withRouter } from "react-router-dom"
 import { useStateValue } from "../state"
@@ -80,7 +79,7 @@ const User = props => {
       const data = await fetch(url),
         json = await data.json()
 
-      await dispatch({ type: "user", payload: json })
+      dispatch({ type: "user", payload: json })
       dispatch({ type: "loading", payload: false })
       dispatch({
         type: "animation",

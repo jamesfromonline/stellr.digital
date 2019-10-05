@@ -4,6 +4,9 @@ import { formatNum, abbrNum } from "../utils"
 import { withRouter } from "react-router-dom"
 import { useStateValue } from "../state"
 import Loader from "./Loader"
+import UserFeed from "./shared/UserFeed"
+import UserStats from "./shared/UserStats"
+import UserAvatar from "./shared/UserAvatar"
 
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue(),
@@ -37,6 +40,7 @@ const User = props => {
   const handlePagination = () =>
     posts.posts.length < posts.count && getUserMedia(user.user.id)
 
+  // TODO: move this to backend
   const getUserMedia = async id => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
 
@@ -120,27 +124,6 @@ const User = props => {
     const data = user.user,
       feed = posts.posts
 
-    const mediaLoader = <Loader main="#70e8c8" sub="#ffffff" />
-
-    const mappedFeed = feed.map(post => {
-      const p = post.node
-      return (
-        <div className="feed__thumbnail" key={p.id}>
-          <img src={p.thumbnail_src} alt="saying something because lintr" />
-        </div>
-      )
-    })
-
-    const grid = (
-      <BottomScrollListener onBottom={mediaLoading ? null : handlePagination}>
-        {scrollRef => (
-          <div ref={scrollRef} className="feed__grid animate__fade-in">
-            {mappedFeed}
-          </div>
-        )}
-      </BottomScrollListener>
-    )
-
     return (
       <section className={`user ${animations.user}`}>
         <div className="user__main">
@@ -153,44 +136,55 @@ const User = props => {
                   onClick={goHome}
                 ></button>
               </div>
-              <div className="user__avatar-container">
-                <div
-                  className="user__avatar"
-                  style={{ backgroundImage: `url(${data.profile_picture})` }}
-                />
+              <UserAvatar src={data.profile_picture} />
+
+              <UserStats
+                formatNumber={formatNumber}
+                data={[
+                  {
+                    title: "Posts",
+                    content: formatNumber(data.feed_info.posts_count)
+                  },
+                  {
+                    title: "Followers",
+                    content: formatNumber(data.followed_by)
+                  },
+                  {
+                    title: "Following",
+                    content: formatNumber(data.following)
+                  }
+                ]}
+              />
+
+              <div className="feed">
+                {mediaLoading ? (
+                  <Loader main="#70e8c8" sub="#ffffff" />
+                ) : (
+                  <UserFeed
+                    feed={feed}
+                    mediaLoading={mediaLoading}
+                    handlePagination={handlePagination}
+                  />
+                )}
               </div>
 
-              <ul className="user__stats" style={{ marginTop: "20px" }}>
-                <li>
-                  <p className="user__stat-title">Posts</p>
-                  <p>{formatNumber(data.feed_info.posts_count)}</p>
-                </li>
-                <li>
-                  <p className="user__stat-title">Followers</p>
-                  <p>{formatNumber(data.followed_by)}</p>
-                </li>
-                <li>
-                  <p className="user__stat-title">Following</p>
-                  <p>{formatNumber(data.following)}</p>
-                </li>
-              </ul>
-
-              <div className="feed">{mediaLoading ? mediaLoader : grid}</div>
-
-              <ul className="user__stats">
-                <li>
-                  <p className="user__stat-title">Average Likes</p>
-                  <p>{formatNumber(data.likes_avg)}</p>
-                </li>
-                <li>
-                  <p className="user__stat-title">Average Comments</p>
-                  <p>{formatNumber(data.comments_avg)}</p>
-                </li>
-                <li>
-                  <p className="user__stat-title">Engagement Rate</p>
-                  <p>{data.totalEngagementRate}%</p>
-                </li>
-              </ul>
+              <UserStats
+                formatNumber={formatNumber}
+                data={[
+                  {
+                    title: "Average Likes",
+                    content: formatNumber(data.likes_avg)
+                  },
+                  {
+                    title: "Average Comments",
+                    content: formatNumber(data.comments_avg)
+                  },
+                  {
+                    title: "Engagement Rate",
+                    content: `${data.totalEngagementRate}%`
+                  }
+                ]}
+              />
             </div>
           </div>
         </div>

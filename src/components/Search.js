@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { withRouter } from "react-router-dom"
 import SearchForm from "./shared/SearchForm"
-import SearchButton from "./searchButton"
+import SearchButton from "./shared/SearchButton"
 import { useStateValue } from "../state"
 
 const Search = props => {

@@ -13,13 +13,11 @@ const UserPost = () => {
     })
   }
   if (userPost.show) {
-    console.log(posts.posts[userPost.index])
     return (
       <div className={`post ${!userPost.show && "remove"}`}>
         <div className="post__clickable-layer" onClick={handleClose} />
         <div className="post__content-container">
           <p>post</p>
-          <button onClick={handleClose}>CLOSE</button>
           <img
             className="post__img"
             src={posts.posts[userPost.index].node.display_url}

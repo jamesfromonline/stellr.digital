@@ -1,11 +1,27 @@
 import React from "react"
 import BottomScrollListener from "react-bottom-scroll-listener"
+import { useStateValue } from "../../state"
 
 const UserFeed = props => {
-  const mappedFeed = props.feed.map(post => {
+  const [{ userPost }, dispatch] = useStateValue()
+  const showUserPost = i => {
+    dispatch({
+      type: "userPost",
+      payload: {
+        show: true,
+        index: i
+      }
+    })
+  }
+
+  const mappedFeed = props.feed.map((post, i) => {
     const p = post.node
     return (
-      <div className="feed__thumbnail" key={p.id}>
+      <div
+        onClick={() => showUserPost(i)}
+        className="feed__thumbnail"
+        key={p.id}
+      >
         <img src={p.thumbnail_src} alt="saying something because lintr" />
       </div>
     )

@@ -20,6 +20,11 @@ export const rootReducer = (state, action) => {
         ...state,
         isLoading: action.payload
       }
+    case "userPost":
+      return {
+        ...state,
+        userPost: action.payload
+      }
     default:
       return state
   }

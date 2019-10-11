@@ -6,6 +6,7 @@ import Loader from "./Loader"
 import UserFeed from "./shared/UserFeed"
 import UserStats from "./shared/UserStats"
 import UserAvatar from "./shared/UserAvatar"
+import UserPost from "./shared/UserPost"
 
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue(),
@@ -187,6 +188,7 @@ const User = props => {
             </div>
           </div>
         </div>
+        <UserPost />
       </section>
     )
   } else {

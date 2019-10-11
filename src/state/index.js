@@ -9,6 +9,10 @@ export const initialState = {
     posts: [],
     page_info: {}
   },
+  userPost: {
+    show: false,
+    index: null
+  },
   isLoading: false,
   animations: {
     search: "animate__fade-in",

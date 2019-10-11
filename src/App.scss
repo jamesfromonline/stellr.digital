@@ -39,6 +39,14 @@ ul {
   font-size: 2.2rem;
   margin: 10px 0 0 10px;
   user-select: none;
+
+  &__icon {
+    background: url('/img/moon.svg') no-repeat center;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+  }
 }
 
 .remove {

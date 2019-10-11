@@ -64,7 +64,10 @@ const Search = props => {
 
   return (
     <section className={`search ${animations.search}`}>
-      <h1 className="logo">stellr</h1>
+      <h1 className="logo">
+        {/* <span className="logo__icon" /> */}
+        stellr
+      </h1>
       <div className="search__area">
         <SearchForm handleChange={handleChange} handleSearch={handleSearch} />
         <SearchButton

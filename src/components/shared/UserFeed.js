@@ -3,7 +3,7 @@ import BottomScrollListener from "react-bottom-scroll-listener"
 import { useStateValue } from "../../state"
 
 const UserFeed = props => {
-  const [{ userPost }, dispatch] = useStateValue()
+  const [_, dispatch] = useStateValue()
   const showUserPost = i => {
     dispatch({
       type: "userPost",
@@ -22,7 +22,7 @@ const UserFeed = props => {
         className="feed__thumbnail"
         key={p.id}
       >
-        <img src={p.thumbnail_src} alt="saying something because lintr" />
+        <img src={p.thumbnail_src} alt="Post Thumbnail" />
       </div>
     )
   })

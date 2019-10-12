@@ -26,9 +26,7 @@ const UserPost = () => {
       <div className={`post ${animation}`}>
         <div className="post__clickable-layer" onClick={handleClose} />
         <div className="post__top-bar">
-          <button className="post__close-btn" onClick={handleClose}>
-            X
-          </button>
+          <button className="post__close-btn" onClick={handleClose} />
         </div>
         <div className="post__content-container">
           <img

@@ -35,15 +35,17 @@
         background-color: transparent;
         border: none;
         outline: 0;
-        color: white;
-        font-size: 3rem;
         cursor: pointer;
         transform: scale(1);
-        transition: all .3s ease;
+        transition: all .1s ease;
+        background: url('/img/error.svg') no-repeat center;
+        background-size: contain;
+        width: 20px;
+        height: 20px;
 
         &:focus,
         &:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
     }
 

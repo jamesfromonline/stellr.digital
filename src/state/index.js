@@ -14,6 +14,7 @@ export const initialState = {
     index: null
   },
   isLoading: false,
+  isLoadingMedia: false,
   animations: {
     search: "animate__fade-in",
     user: null

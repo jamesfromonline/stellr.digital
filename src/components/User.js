@@ -37,8 +37,20 @@ const User = props => {
     }, 500)
   }
 
-  const handlePagination = () =>
-    posts.posts.length < posts.count && getUserMedia(user.user.id)
+  const handlePagination = () => {
+    if (posts.posts.length < posts.count) {
+      getUserMedia(user.user.id)
+      dispatch({
+        type: "loadingMedia",
+        payload: true
+      })
+    } else {
+      dispatch({
+        type: "loadingMedia",
+        payload: false
+      })
+    }
+  }
 
   // TODO: move this to backend
   const getUserMedia = async id => {
@@ -68,6 +80,10 @@ const User = props => {
 
       setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
       setMediaLoading(false)
+      dispatch({
+        type: "loadingMedia",
+        payload: false
+      })
     } catch (e) {
       console.error(e)
     }
@@ -174,15 +190,15 @@ const User = props => {
                 formatNumber={formatNumber}
                 data={[
                   {
-                    title: "Average Likes",
+                    title: "Likes",
                     content: formatNumber(data.likes_avg)
                   },
                   {
-                    title: "Average Comments",
+                    title: "Comments",
                     content: formatNumber(data.comments_avg)
                   },
                   {
-                    title: "Engagement Rate",
+                    title: "Engagement",
                     content: `${data.totalEngagementRate}%`
                   }
                 ]}

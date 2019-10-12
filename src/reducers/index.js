@@ -20,6 +20,11 @@ export const rootReducer = (state, action) => {
         ...state,
         isLoading: action.payload
       }
+    case "loadingMedia":
+      return {
+        ...state,
+        isLoadingMedia: action.payload
+      }
     case "userPost":
       return {
         ...state,

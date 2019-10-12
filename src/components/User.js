@@ -139,6 +139,7 @@ const User = props => {
               <UserAvatar src={data.profile_picture} />
 
               <UserStats
+                styleName="user__stats--top"
                 formatNumber={formatNumber}
                 data={[
                   {
@@ -169,6 +170,7 @@ const User = props => {
               </div>
 
               <UserStats
+                styleName="user__stats--bottom"
                 formatNumber={formatNumber}
                 data={[
                   {

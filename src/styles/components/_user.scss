@@ -35,10 +35,12 @@
       border-radius: 10px;
       background-color: #fff;
       box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
+      transition: all .2s ease;
 
       @media (max-width: 576px) {
-       width: 95vw;
-       min-height: 60vh;
+       width: 98vw;
+       flex: 1;
+       max-height: 85vh;
        font-size: 1.2rem;
       }
     }
@@ -53,6 +55,7 @@
       width: 100%;
       height: 100%;
       z-index: 3;
+      transition: all .2s ease;
     }
 
     &__card-top-bar {
@@ -85,6 +88,14 @@
       width: 150px;
       height: 150px;
       min-height: 150px;
+      transition: all .2s ease;
+
+      @media (max-width: 576px) {
+        top: -40px;
+        width: 100px;
+        height: 100px;
+        min-height: 100px;
+      }
     }
 
     &__avatar {
@@ -113,6 +124,14 @@
       box-sizing: border-box;
       padding: 20px;
 
+      &--top {
+        margin-top: 20px;
+      }
+
+      // &:first-child {
+      //   margin-top: 20px;
+      // }
+
 
       li {
         display: flex;
@@ -129,7 +148,9 @@
         }
 
         p {
+          width: 100%;
           margin: 0;
+          text-align: center;
 
           &:last-child {
             flex: 1;
@@ -141,6 +162,22 @@
     &__stat-title {
       font-size: 0.8rem;
       text-transform: uppercase;
+      color: lighten(#333, 20%);
+      transition: all .2s ease;
+
+
+      @media (max-width: 576px) {
+        font-size: 0.7rem;
+      }
+    }
+
+    &__stat-content {
+      font-size: 1.5rem;
+      color: #333;
+
+      @media (max-width: 576px) {
+        font-size: 1.3rem;
+      }
     }
 
     &__engagement-rate {
@@ -166,7 +203,7 @@
       height: 100%;
       overflow-y: auto;
 
-      @media (min-width: 769px) {
+      @media (min-width: 576px) {
         grid-template-columns: 3fr 3fr 3fr;
       }
 

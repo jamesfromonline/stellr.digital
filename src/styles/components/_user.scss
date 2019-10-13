@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: $white;
     font-size: 2rem;
 
     &__top-bar {
@@ -30,7 +30,7 @@
     &__avatar-container {
       position: absolute;
       top: -65px;
-      background-color: #fff;
+      background-color: $white;;
       padding: 10px;
       border-radius: 50%;
       overflow: hidden;
@@ -85,12 +85,6 @@
         }
       }
 
-
-      // &:first-child {
-      //   margin-top: 20px;
-      // }
-
-
       li {
         display: flex;
         flex-direction: column;
@@ -99,7 +93,7 @@
         flex: 1;
         padding: 10px;
         color: #333;
-        border-right: 2px solid #fff;
+        border-right: 2px solid $white;
 
         &:last-child {
           border: none;
@@ -120,7 +114,7 @@
     &__stat-title {
       font-size: 0.8rem;
       text-transform: uppercase;
-      color: lighten(#333, 20%);
+      color: lighten($black, 20%);
       transition: all .1s ease;
 
 
@@ -131,7 +125,7 @@
 
     &__stat-content {
       font-size: 1.5rem;
-      color: #333;
+      color: $black;
 
       @media (max-width: 576px) {
         font-size: 1.3rem;

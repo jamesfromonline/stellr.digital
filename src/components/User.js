@@ -7,6 +7,7 @@ import UserFeed from "./shared/UserFeed"
 import UserStats from "./shared/UserStats"
 import UserAvatar from "./shared/UserAvatar"
 import UserPost from "./shared/UserPost"
+import Card from "./shared/Card"
 
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue(),
@@ -143,68 +144,59 @@ const User = props => {
     return (
       <section className={`user ${animations.user}`}>
         <div className="user__main">
-          <div className="user__card">
-            <div className="user__card-content">
-              <div className="user__card-top-bar">
-                <button
-                  className="user__card-btn"
-                  title="Go Back"
-                  onClick={goHome}
-                ></button>
-              </div>
-              <UserAvatar src={data.profile_picture} />
+          <Card goHome={goHome}>
+            <UserAvatar src={data.profile_picture} />
 
-              <UserStats
-                styleName="user__stats--top"
-                formatNumber={formatNumber}
-                data={[
-                  {
-                    title: "Posts",
-                    content: formatNumber(data.feed_info.posts_count)
-                  },
-                  {
-                    title: "Followers",
-                    content: formatNumber(data.followed_by)
-                  },
-                  {
-                    title: "Following",
-                    content: formatNumber(data.following)
-                  }
-                ]}
-              />
+            <UserStats
+              styleName="user__stats--top"
+              formatNumber={formatNumber}
+              data={[
+                {
+                  title: "Posts",
+                  content: formatNumber(data.feed_info.posts_count)
+                },
+                {
+                  title: "Followers",
+                  content: formatNumber(data.followed_by)
+                },
+                {
+                  title: "Following",
+                  content: formatNumber(data.following)
+                }
+              ]}
+            />
 
-              <div className="feed">
-                {mediaLoading ? (
-                  <Loader main="#70e8c8" sub="#ffffff" />
-                ) : (
-                  <UserFeed
-                    feed={feed}
-                    mediaLoading={mediaLoading}
-                    handlePagination={handlePagination}
-                  />
-                )}
-              </div>
-
-              <UserStats
-                styleName="user__stats--bottom"
-                formatNumber={formatNumber}
-                data={[
-                  {
-                    title: "Likes",
-                    content: formatNumber(data.likes_avg)
-                  },
-                  {
-                    title: "Comments",
-                    content: formatNumber(data.comments_avg)
-                  },
-                  {
-                    title: "Engagement",
-                    content: `${data.totalEngagementRate}%`
-                  }
-                ]}
-              />
+            <div className="feed">
+              {mediaLoading ? (
+                <Loader main="#70e8c8" sub="#ffffff" />
+              ) : (
+                <UserFeed
+                  feed={feed}
+                  mediaLoading={mediaLoading}
+                  handlePagination={handlePagination}
+                />
+              )}
             </div>
-          </div>
+
+            <UserStats
+              styleName="user__stats--bottom"
+              formatNumber={formatNumber}
+              data={[
+                {
+                  title: "Likes",
+                  content: formatNumber(data.likes_avg)
+                },
+                {
+                  title: "Comments",
+                  content: formatNumber(data.comments_avg)
+                },
+                {
+                  title: "Engagement",
+                  content: `${data.totalEngagementRate}%`
+                }
+              ]}
+            />
+          </Card>
         </div>
         <UserPost />
       </section>

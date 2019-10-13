@@ -8,7 +8,6 @@ const PostStats = props => {
     likes = post.edge_media_preview_like.count,
     comments = post.edge_media_to_comment.count,
     engagement = (((likes + comments) / user.user.followed_by) * 100).toFixed(2)
-  console.log(engagement + "%")
   return (
     <ul className="post-stats">
       <li className="post-stats__stat">

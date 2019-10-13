@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useStateValue } from "../../state"
+import PostStats from "./PostStats"
 
 const UserPost = () => {
   const [{ posts, userPost }, dispatch] = useStateValue()
@@ -35,6 +36,7 @@ const UserPost = () => {
             alt="User post"
           />
         </div>
+        <PostStats index={userPost.index} />
       </div>
     )
   } else {

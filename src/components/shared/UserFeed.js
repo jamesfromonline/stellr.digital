@@ -28,8 +28,6 @@ const UserFeed = props => {
     )
   })
 
-  console.log(mappedFeed)
-
   return (
     <BottomScrollListener
       onBottom={!props.mediaLoading && props.handlePagination}

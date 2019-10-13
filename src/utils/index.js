@@ -13,3 +13,13 @@ export const abbrNum = (number, decPlaces) => {
   }
   return number
 }
+
+export const decorateNumber = num => {
+  if (num >= 10000) {
+    return abbrNum(num, 0)
+  } else if (num >= 1000 && num < 10000) {
+    return formatNum(num)
+  } else {
+    return num
+  }
+}

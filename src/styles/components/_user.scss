@@ -21,6 +21,10 @@
       align-items: center;
       flex-direction: column;
       flex: 1;
+
+      @media (max-width: 767px) {
+        padding-top: 8vh;
+      }
     }
 
     &__card {
@@ -35,13 +39,15 @@
       border-radius: 10px;
       background-color: #fff;
       box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
-      transition: all .2s ease;
+      transition: all .1s ease;
 
-      @media (max-width: 576px) {
-       width: 98vw;
+      @media (max-width: 767px) {
+       width: 100vw;
+       max-width: none;
        flex: 1;
-       max-height: 85vh;
+       max-height: 100vh;
        font-size: 1.2rem;
+       border-radius: 0;
       }
     }
 
@@ -55,7 +61,7 @@
       width: 100%;
       height: 100%;
       z-index: 3;
-      transition: all .2s ease;
+      transition: all .1s ease;
     }
 
     &__card-top-bar {
@@ -88,7 +94,7 @@
       width: 150px;
       height: 150px;
       min-height: 150px;
-      transition: all .2s ease;
+      transition: all .1s ease;
 
       @media (max-width: 576px) {
         top: -40px;
@@ -122,11 +128,20 @@
       align-items: center;
       width: 100%;
       box-sizing: border-box;
-      padding: 20px;
+      padding: 10px 20px;
 
       &--top {
         margin-top: 20px;
       }
+
+      @media (max-width: 576px) {
+        padding: 7px 20px;
+
+        &--top {
+          margin-top: 0;
+        }
+      }
+
 
       // &:first-child {
       //   margin-top: 20px;
@@ -163,7 +178,7 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       color: lighten(#333, 20%);
-      transition: all .2s ease;
+      transition: all .1s ease;
 
 
       @media (max-width: 576px) {
@@ -192,24 +207,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     flex: 1;
     width: 100%;
     height: 100%;
 
     &__grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 3fr 3fr 3fr;
       width: 100%;
       height: 100%;
       overflow-y: auto;
 
-      @media (min-width: 576px) {
-        grid-template-columns: 3fr 3fr 3fr;
-      }
+      // @media (min-width: 576px) {
+      //   grid-template-columns: 3fr 3fr 3fr;
+      // }
 
-      @media (orientation: landscape) {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+      // @media (orientation: landscape) {
+      //   grid-template-columns: 1fr 1fr 1fr;
+      // }
 
       &::-webkit-scrollbar { width: 0 !important }
 
@@ -224,5 +240,14 @@
     &__thumbnail {
       width: 100%;
       height: 100%;
+    }
+
+    &__pagination-loader {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      height: 80px;
     }
   }

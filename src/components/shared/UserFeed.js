@@ -1,9 +1,10 @@
 import React from "react"
 import BottomScrollListener from "react-bottom-scroll-listener"
 import { useStateValue } from "../../state"
+import Loader from "../Loader"
 
 const UserFeed = props => {
-  const [_, dispatch] = useStateValue()
+  const [{ isLoadingMedia }, dispatch] = useStateValue()
   const showUserPost = i => {
     dispatch({
       type: "userPost",
@@ -27,14 +28,21 @@ const UserFeed = props => {
     )
   })
 
+  console.log(mappedFeed)
+
   return (
     <BottomScrollListener
       onBottom={!props.mediaLoading && props.handlePagination}
     >
       {scrollRef => (
-        <div ref={scrollRef} className="feed__grid animate__fade-in">
-          {mappedFeed}
-        </div>
+        <>
+          <div ref={scrollRef} className="feed__grid animate__fade-in">
+            {mappedFeed}
+          </div>
+          <div className="feed__pagination-loader">
+            {props.feed.length && isLoadingMedia && <Loader />}
+          </div>
+        </>
       )}
     </BottomScrollListener>
   )

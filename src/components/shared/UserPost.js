@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useStateValue } from "../../state"
+import PostStats from "./PostStats"
 
 const UserPost = () => {
   const [{ posts, userPost }, dispatch] = useStateValue()
@@ -26,9 +27,7 @@ const UserPost = () => {
       <div className={`post ${animation}`}>
         <div className="post__clickable-layer" onClick={handleClose} />
         <div className="post__top-bar">
-          <button className="post__close-btn" onClick={handleClose}>
-            X
-          </button>
+          <button className="post__close-btn" onClick={handleClose} />
         </div>
         <div className="post__content-container">
           <img
@@ -37,6 +36,7 @@ const UserPost = () => {
             alt="User post"
           />
         </div>
+        <PostStats index={userPost.index} />
       </div>
     )
   } else {

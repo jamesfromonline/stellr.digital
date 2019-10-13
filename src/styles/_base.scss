@@ -1,6 +1,11 @@
+@import './shared/variables';
+@import './shared/mixins';
+@import './shared/animations';
+
 @import './components/search';
 @import './components/user';
 @import './components/loader';
 @import './components/post';
-
-@import './shared/animations';
+@import './components/feed';
+@import './components/post-stats';
+@import './components/card';

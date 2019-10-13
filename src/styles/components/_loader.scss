@@ -1,17 +1,7 @@
-$buttonColor: lighten(#e870d0, 15%);
-$backgroundColor: #DAEBEE;
-$successColor: #3BB873;
-
-@mixin dimensions($width: null, $height: $width) { width: $width; height: $height; }
-%reset { margin: 0; padding: 0; }
-%flex { display: flex; justify-content: center;	align-items: center; }
-*, *:before, *:after { box-sizing: border-box; }
-
-
 .loading {
-	@extend %flex;
-	@include dimensions($width: 100%, $height: 50px);
-	background: transparent;
+	@include flex(row, center, center);
+	@include size(100%, 50px);
+	background-color: transparent;
 	border-radius: 10px;
 	will-change: transform;
 	transition: all .2s ease;
@@ -19,38 +9,26 @@ $successColor: #3BB873;
 	border: 2px solid transparent;
 	cursor: pointer;
 	font-size: 1.2rem;
-	color: #ffffff;
-	color: lighten(#70e8c8, 30%);
+	color: $white;
 	outline: none;
 	text-align: center;
 
-	&:hover {
-		background: lighten(#70e8c8, 30%);
-		color: #70e8c8;
-	}
-	&:active {
-		font-size: 15px;
-		transform: translateY(1px);
-	}
+
 	&.active {
 		font-size: 0;
 		border-radius: 25px;
 		width: 50px;
 		background: transparent;
-		border-color: white;
+		border-color: $white;
 	}
+
 	&.loader {
-		border-right: 2px solid #70e8c8;
+		border-right: 2px solid $green;
 		animation: loader .4s linear infinite;
 		animation-delay: 0.2s;
 	}
-	&.success {
-		background: $successColor;
-		border-color: $successColor;
-		font-size: 14px;
-		color: #ffffff;
-	}
 }
+
 
 @keyframes loader {
 	0% {

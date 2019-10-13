@@ -1,77 +1,68 @@
-$white: lighten(#70e8c8, 30%);
-
 .search {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+  @include flex(column, center, center);
+  @include size(100%, 100%);
 
     &__error {
-        font-family: 'Lato';
-        color: $white;
-        opacity: 0;
-        height: 10px;
+      height: 10px;
+      font-family: 'Lato';
+      opacity: 0;
+      color: $white;
 
         &--active {
-            opacity: 1;
+          opacity: 1;
         }
     }
 
-    &__area {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    &__container {
+      @include flex(column, center, center);
     }
+
+    &__form {
+      @include flex(column, center, center);
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    &__input {
+      padding: 20px;
+      font-size: 24px;
+      border: none;
+      border-bottom: 2px solid $white;
+      border-radius: 10px;
+      background: transparent;
+      color: $black;
+      outline: none;
+      transition: all .3s ease;
+      z-index: 2;
+
+      &::-webkit-input-placeholder {
+        color: $white;
+        transition: color .4s ease;
+      }
+
+      &:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
+
+      &:focus + .search__input--focus {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+    }
+
+    &__input--focus {
+      @include size(100%, 0);
+      position: absolute;
+      bottom: 0;
+      border-radius: 10px;
+      background: $white;
+      transition: height 0.4s cubic-bezier(0.76, -0.76, 0.25, 1.26);
+      z-index: -2;
+    }
+
 }
 
 
-.wrap {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
 
-  input {
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid $white;
-    outline: none;
-    padding: 20px;
-    border-radius: 10px;
-    color: #333;
-    font-size: 24px;
-    z-index: 2;
-    transition: all .3s ease;
 
-  }
-
-  input::-webkit-input-placeholder {
-    color: $white;
-    transition: color .4s ease;
-  }
-
-  input:focus::-webkit-input-placeholder {
-    color: transparent;
-  }
-
-  .bg {
-    height: 0%;
-    width: 100%;
-    background: $white;
-    position: absolute;
-    border-radius: 10px;
-    bottom: 0;
-    z-index: -2;
-    transition: height 0.7s cubic-bezier(0.76, -0.76, 0.25, 1.26);
-  }
-
-  input:focus + .bg {
-    height: 100%;
-    border-radius: 10px;
-  }

@@ -1,38 +1,32 @@
 
 .post {
+    @include flex(column, center, center);
+    @include size(100%, 100%);
     position: absolute;
     top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    background-color: transparentize($black, 0.01);
     z-index: 100;
-    background-color: rgba(0,0,0,0.9);
 
     &__clickable-layer {
+        @include size(100%, 100%);
         position: absolute;
         top: 0;
-        width: 100%;
-        height: 100%;
         z-index: 101;
     }
 
     &__top-bar {
+        @include flex(row, flex-end, center);
         position: absolute;
         top: 0;
         left: 0;
         width:100%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
         padding: 20px;
         box-sizing: border-box;
         z-index: 110;
     }
 
     &__close-btn {
+        @include size(30px, 30px);
         background-color: transparent;
         border: none;
         outline: 0;
@@ -41,8 +35,6 @@
         transition: all .1s ease;
         background: url('/img/error.svg') no-repeat center;
         background-size: contain;
-        width: 30px;
-        height: 30px;
 
         &:focus,
         &:hover {
@@ -51,78 +43,25 @@
     }
 
     &__content-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex(row, center, center);
         position: relative;
         height: 80vh;
-        background: white;
+        background: $white;
         border-radius: 10px;
         z-index: 102;
 
         @media (max-width: 1000px) {
-            height: auto;
-            width: 100%;
+            @include size(100%, auto);
         }
     }
 
     &__img {
-        width: auto;
-        height: 100%;
+        @include size(auto, 100%);
         object-fit: cover;
         z-index: 103;
 
         @media (max-width: 1000px) {
-            height: auto;
-            width: 100%;
-        }
-    }
-}
-
-.post-stats {
-    position: absolute;
-    bottom: 0;
-    padding: 10px 20px;
-    background: rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 60px;
-    z-index: 102;
-
-    &__stat {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        color: #fff;
-        font-size: 1rem;
-    }
-
-    &__content {
-        margin: 0;
-        margin-top: 5px;
-    }
-
-    &__icon {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        width: 30px;
-        height: 30px;
-
-        &--like {
-            background-image: url('/img/like.svg');
-        }
-
-        &--comment {
-            background: url('/img/comment.svg');
-        }
-
-        &--engagement {
-            background-image: url('/img/engagement.svg')
+            @include size(100%, auto);
         }
     }
 }

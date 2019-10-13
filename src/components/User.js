@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { formatNum, abbrNum } from "../utils"
 import { withRouter } from "react-router-dom"
+import { decorateNumber } from "../utils"
 import { useStateValue } from "../state"
 import Loader from "./Loader"
+import Card from "./shared/Card"
+import UserPost from "./shared/UserPost"
 import UserFeed from "./shared/UserFeed"
 import UserStats from "./shared/UserStats"
 import UserAvatar from "./shared/UserAvatar"
-import UserPost from "./shared/UserPost"
 
 const User = props => {
   const [{ animations, user, posts, isLoading }, dispatch] = useStateValue(),
@@ -126,16 +127,6 @@ const User = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const formatNumber = num => {
-    if (num >= 10000) {
-      return abbrNum(num, 0)
-    } else if (num >= 1000 && num < 10000) {
-      return formatNum(num)
-    } else {
-      return num
-    }
-  }
-
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user,
       feed = posts.posts
@@ -143,68 +134,59 @@ const User = props => {
     return (
       <section className={`user ${animations.user}`}>
         <div className="user__main">
-          <div className="user__card">
-            <div className="user__card-content">
-              <div className="user__card-top-bar">
-                <button
-                  className="user__card-btn"
-                  title="Go Back"
-                  onClick={goHome}
-                ></button>
-              </div>
-              <UserAvatar src={data.profile_picture} />
+          <Card goHome={goHome}>
+            <UserAvatar src={data.profile_picture} />
 
-              <UserStats
-                styleName="user__stats--top"
-                formatNumber={formatNumber}
-                data={[
-                  {
-                    title: "Posts",
-                    content: formatNumber(data.feed_info.posts_count)
-                  },
-                  {
-                    title: "Followers",
-                    content: formatNumber(data.followed_by)
-                  },
-                  {
-                    title: "Following",
-                    content: formatNumber(data.following)
-                  }
-                ]}
-              />
+            <UserStats
+              styleName="user__stats--top"
+              formatNumber={decorateNumber}
+              data={[
+                {
+                  title: "Posts",
+                  content: decorateNumber(data.feed_info.posts_count)
+                },
+                {
+                  title: "Followers",
+                  content: decorateNumber(data.followed_by)
+                },
+                {
+                  title: "Following",
+                  content: decorateNumber(data.following)
+                }
+              ]}
+            />
 
-              <div className="feed">
-                {mediaLoading ? (
-                  <Loader main="#70e8c8" sub="#ffffff" />
-                ) : (
-                  <UserFeed
-                    feed={feed}
-                    mediaLoading={mediaLoading}
-                    handlePagination={handlePagination}
-                  />
-                )}
-              </div>
-
-              <UserStats
-                styleName="user__stats--bottom"
-                formatNumber={formatNumber}
-                data={[
-                  {
-                    title: "Likes",
-                    content: formatNumber(data.likes_avg)
-                  },
-                  {
-                    title: "Comments",
-                    content: formatNumber(data.comments_avg)
-                  },
-                  {
-                    title: "Engagement",
-                    content: `${data.totalEngagementRate}%`
-                  }
-                ]}
-              />
+            <div className="feed">
+              {mediaLoading ? (
+                <Loader main="#70e8c8" sub="#ffffff" />
+              ) : (
+                <UserFeed
+                  feed={feed}
+                  mediaLoading={mediaLoading}
+                  handlePagination={handlePagination}
+                />
+              )}
             </div>
-          </div>
+
+            <UserStats
+              styleName="user__stats--bottom"
+              formatNumber={decorateNumber}
+              data={[
+                {
+                  title: "Likes",
+                  content: decorateNumber(data.likes_avg)
+                },
+                {
+                  title: "Comments",
+                  content: decorateNumber(data.comments_avg)
+                },
+                {
+                  title: "Engagement",
+                  content: `${data.totalEngagementRate}%`
+                }
+              ]}
+            />
+          </Card>
         </div>
         <UserPost />
       </section>

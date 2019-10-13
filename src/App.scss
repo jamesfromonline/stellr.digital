@@ -1,29 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Tajawal:200&display=swap');
 @import './styles/base';
 
-// To do: make variables/mixins sheets
 
 body {
   overflow-x: hidden;
-  background-color: #70e8c8;
   font-family: 'Lato';
-  color: #333;
+  background-color: $green;
+  color: $black;
 }
 
 ul {
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  @include flex(row, center, center);
+  @include size(100%, 100%);
   position: relative;
+  overflow: hidden;
 }
 
 .search, .home, .user {
@@ -34,18 +30,17 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
-  font-family: 'Tajawal';
-  color: lighten(#70e8c8, 30%);
-  font-size: 2.2rem;
   margin: 10px 0 0 10px;
+  font-size: 2.2rem;
+  font-family: 'Tajawal';
+  color: $white;
   user-select: none;
 
   &__icon {
+    @include size(25px, 25px);
+    display: inline-block;
     background: url('/img/moon.svg') no-repeat center;
     background-size: contain;
-    width: 25px;
-    height: 25px;
-    display: inline-block;
   }
 }
 

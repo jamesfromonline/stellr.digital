@@ -2,7 +2,7 @@ import React from "react"
 
 const Loader = props => (
   <div
-    className="loading loader loading--active"
+    className="loading loader active"
     style={{ borderColor: props.main, borderRightColor: props.sub }}
   />
 )

@@ -7,14 +7,15 @@ const SearchForm = props => {
   }
 
   return (
-    <form className="wrap" onSubmit={handleSearch}>
+    <form className="search__form" onSubmit={handleSearch}>
       <input
+        className="search__input"
         type="text"
         spellCheck="false"
         onChange={props.handleChange}
         placeholder="username"
       />
-      <div className="bg" />
+      <div className="search__input--focus" />
     </form>
   )
 }

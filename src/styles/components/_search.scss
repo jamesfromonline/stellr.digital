@@ -13,52 +13,56 @@
         }
     }
 
-    &__area {
+    &__container {
       @include flex(column, center, center);
     }
+
+    &__form {
+      @include flex(column, center, center);
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    &__input {
+      padding: 20px;
+      font-size: 24px;
+      border: none;
+      border-bottom: 2px solid $white;
+      border-radius: 10px;
+      background: transparent;
+      color: $black;
+      outline: none;
+      transition: all .3s ease;
+      z-index: 2;
+
+      &::-webkit-input-placeholder {
+        color: $white;
+        transition: color .4s ease;
+      }
+
+      &:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
+
+      &:focus + .search__input--focus {
+        height: 100%;
+        border-radius: 10px;
+      }
+
+    }
+
+    &__input--focus {
+      @include size(100%, 0);
+      position: absolute;
+      bottom: 0;
+      border-radius: 10px;
+      background: $white;
+      transition: height 0.4s cubic-bezier(0.76, -0.76, 0.25, 1.26);
+      z-index: -2;
+    }
+
 }
 
 
-.wrap {
-  @include flex(column, center, center);
-  position: relative;
-  margin-bottom: 10px;
-  }
 
-  input {
-    padding: 20px;
-    font-size: 24px;
-    border: none;
-    border-bottom: 2px solid $white;
-    border-radius: 10px;
-    background: transparent;
-    color: $black;
-    outline: none;
-    transition: all .3s ease;
-    z-index: 2;
 
-  }
-
-  input::-webkit-input-placeholder {
-    color: $white;
-    transition: color .4s ease;
-  }
-
-  input:focus::-webkit-input-placeholder {
-    color: transparent;
-  }
-
-  .bg {
-    @include size(100%, 0);
-    position: absolute;
-    bottom: 0;
-    border-radius: 10px;
-    background: $white;
-    transition: height 0.4s cubic-bezier(0.76, -0.76, 0.25, 1.26);
-    z-index: -2;
-  }
-
-  input:focus + .bg {
-    height: 100%;
-    border-radius: 10px;
-  }

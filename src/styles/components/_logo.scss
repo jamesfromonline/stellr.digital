@@ -1,0 +1,16 @@
+.logo {
+    position: absolute;
+    @include flex(row, center, center);
+    @include size(100%, 50px);
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px 0;
+
+    &__icon {
+      @include size(300px, 50px);
+      display: inline-block;
+      background: url('/img/stellr-logo.png') no-repeat center;
+      background-size: contain;
+    }
+  }

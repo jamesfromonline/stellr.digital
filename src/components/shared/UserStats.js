@@ -8,7 +8,11 @@ const UserStats = props => {
     </li>
   ))
 
-  return <ul className={`user__stats ${props.styleName}`}>{items}</ul>
+  if (!props.isPrivate && !props.isEmpty) {
+    return <ul className={`user__stats ${props.styleName}`}>{items}</ul>
+  } else {
+    return null
+  }
 }
 
 export default UserStats

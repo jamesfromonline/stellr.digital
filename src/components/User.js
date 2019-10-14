@@ -140,6 +140,7 @@ const User = props => {
             <UserStats
               styleName="user__stats--top"
               formatNumber={decorateNumber}
+              isPrivate={false}
               data={[
                 {
                   title: "Posts",
@@ -162,6 +163,7 @@ const User = props => {
               ) : (
                 <UserFeed
                   feed={feed}
+                  isPrivate={user.user.is_private}
                   mediaLoading={mediaLoading}
                   handlePagination={handlePagination}
                 />
@@ -171,6 +173,8 @@ const User = props => {
             <UserStats
               styleName="user__stats--bottom"
               formatNumber={decorateNumber}
+              isPrivate={user.user.is_private}
+              isEmpty={feed.length < 1}
               data={[
                 {
                   title: "Likes",

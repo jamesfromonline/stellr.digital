@@ -37,4 +37,38 @@
       box-sizing: border-box;
       height: 80px;
     }
+
+    &__placeholder-container {
+      @include size(100%, 100%);
+      @include flex(column, center, center);
+      padding-bottom: 85px;
+      box-sizing: border-box;
+
+      @media (max-width: 576px) {
+        padding-bottom: 72px;
+      }
+    }
+
+    &__placeholder {
+      @include size(75px, 75px);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+
+      &--private {
+        background-image: url('/img/lock.svg');
+      }
+
+      &--empty {
+        background-image: url('/img/camera.svg');
+      }
+    }
+
+    &__placeholder-text {
+      color: lighten($black, 10%);
+      font-size: 0.9rem;
+      text-align: center;
+      margin: 0;
+      margin-top: 10px;
+    }
   }

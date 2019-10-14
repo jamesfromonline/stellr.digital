@@ -6,6 +6,11 @@
     left: 0;
     margin: 0;
     padding: 10px 0;
+    font-family: 'Tajawal';
+    font-size: 2.2rem;
+    color: $white;
+    user-select: none;
+
 
     &__icon {
       @include size(300px, 50px);

@@ -30,8 +30,6 @@ const UserFeed = props => {
 
   const isPrivate = props.isPrivate
 
-  console.log(user.user.username)
-
   if (!isPrivate && props.feed.length > 0) {
     return (
       <BottomScrollListener

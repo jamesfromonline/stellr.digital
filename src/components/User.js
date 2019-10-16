@@ -53,6 +53,19 @@ const User = props => {
     }
   }
 
+  const getNewUserMedia = async id => {
+    const url = `http://localhost:5000/instagram/media?id=${id}&end_cursor=${end}`
+
+    try {
+      const data = await fetch(url),
+        json = await data.json()
+
+      console.log(json)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   // TODO: move this to backend
   const getUserMedia = async id => {
     const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
@@ -105,6 +118,7 @@ const User = props => {
       })
 
       getUserMedia(json.user.id)
+      getNewUserMedia(json.user.id)
     } catch (e) {
       props.history.push("/")
       console.error(`User ${username} not found.`)

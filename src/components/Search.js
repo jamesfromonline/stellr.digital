@@ -23,7 +23,7 @@ const Search = props => {
   }
 
   const fetchInstagramUser = async username => {
-    const url = `http://167.99.121.93:5000/instagram?username=${username}`
+    const url = `https://167.99.121.93:5000/instagram?username=${username}`
     // const url = `http://localhost:5000/instagram?username=${username}`
     try {
       const data = await fetch(url),

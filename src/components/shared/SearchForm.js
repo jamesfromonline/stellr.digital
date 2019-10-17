@@ -13,7 +13,7 @@ const SearchForm = props => {
         type="text"
         spellCheck="false"
         onChange={props.handleChange}
-        placeholder="username"
+        placeholder="instagram username"
       />
       <div className="search__input--focus" />
     </form>

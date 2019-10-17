@@ -26,25 +26,17 @@ const User = props => {
 
     setTimeout(() => {
       dispatch({ type: "user", payload: {} })
-      dispatch({
-        type: "posts",
-        payload: {
-          count: 0,
-          posts: [],
-          page_info: {}
-        }
-      })
       props.history.push("/")
     }, 500)
   }
 
   const handlePagination = () => {
-    if (posts.posts.length < posts.count) {
-      getUserMedia(user.user.id)
+    if (user.user.posts.length <= user.user.feed_info.posts_count) {
       dispatch({
         type: "loadingMedia",
         payload: true
       })
+      getNewUserMedia(user.user.id)
     } else {
       dispatch({
         type: "loadingMedia",
@@ -60,39 +52,23 @@ const User = props => {
       const data = await fetch(url),
         json = await data.json()
 
-      console.log(json)
-    } catch (e) {
-      console.error(e)
-    }
-  }
+      const currPosts = user.user.posts
+      const fetchedPosts = json.edges
 
-  // TODO: move this to backend
-  const getUserMedia = async id => {
-    const url = `https://instagram.com/graphql/query/?query_id=17888483320059182&id=${id}&first=12&after=${end}`
-
-    try {
-      const data = await fetch(url),
-        json = await data.json()
-
-      const currentPosts = posts.posts,
-        fetchedPosts = json.data.user.edge_owner_to_timeline_media.edges
-
-      if (currentPosts.length < posts.count)
-        fetchedPosts.forEach(p => currentPosts.push(p))
+      if (json.page_info.has_next_page) {
+        fetchedPosts.forEach(p => currPosts.push(p))
+      }
 
       dispatch({
-        type: "posts",
+        type: "user",
         payload: {
-          count: json.data.user.edge_owner_to_timeline_media.count,
-          posts:
-            currentPosts.length <= 0
-              ? json.data.user.edge_owner_to_timeline_media.edges
-              : currentPosts,
-          page_info: json.data.user.edge_owner_to_timeline_media.page_info
+          ...user,
+          page_info: json.page_info,
+          posts: currPosts <= 0 ? fetchedPosts : currPosts
         }
       })
 
-      setEnd(json.data.user.edge_owner_to_timeline_media.page_info.end_cursor)
+      setEnd(json.page_info.end_cursor)
       setMediaLoading(false)
       dispatch({
         type: "loadingMedia",
@@ -110,17 +86,17 @@ const User = props => {
       const data = await fetch(url),
         json = await data.json()
 
-      dispatch({ type: "user", payload: json })
+      dispatch({ type: "user", payload: json }).then(() =>
+        getNewUserMedia(json.user.id)
+      )
       dispatch({ type: "loading", payload: false })
       dispatch({
         type: "animation",
         payload: { ...animations, user: "animate__fade-in" }
       })
-
-      getUserMedia(json.user.id)
-      getNewUserMedia(json.user.id)
     } catch (e) {
       props.history.push("/")
+      dispatch({ type: "loading", payload: false })
       console.error(`User ${username} not found.`)
     }
   }
@@ -136,14 +112,15 @@ const User = props => {
     } else {
       setMediaLoading(true)
       dispatch({ type: "loading", payload: false })
-      getUserMedia(user.user.id)
+      // getUserMedia(user.user.id)
+      getNewUserMedia(user.user.id)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (!isLoading && Object.entries(user).length > 0) {
     const data = user.user,
-      feed = posts.posts
+      feed = user.user.posts
 
     return (
       <section className={`user ${animations.user}`}>

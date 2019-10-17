@@ -18,11 +18,7 @@ const UserFeed = props => {
   const mappedFeed = props.feed.map((post, i) => {
     const p = post.node
     return (
-      <div
-        onClick={() => showUserPost(i)}
-        className="feed__thumbnail"
-        key={p.id}
-      >
+      <div onClick={() => showUserPost(i)} className="feed__thumbnail" key={i}>
         <img src={p.thumbnail_src} alt="Post Thumbnail" />
       </div>
     )
